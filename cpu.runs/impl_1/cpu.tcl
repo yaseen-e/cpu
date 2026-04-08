@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.runs/impl_1/cpu.tcl"
+  variable script "C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1/cpu.tcl"
   variable category "vivado_impl"
 }
 
@@ -130,17 +130,17 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.cache/wt [current_project]
-  set_property parent.project_path C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.xpr [current_project]
-  set_property ip_output_repo C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/Users/yelar/Desktop/cpu/cpu.cache/wt [current_project]
+  set_property parent.project_path C:/Users/yelar/Desktop/cpu/cpu.xpr [current_project]
+  set_property ip_output_repo C:/Users/yelar/Desktop/cpu/cpu.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.runs/synth_1/cpu.dcp
-  read_ip -quiet C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/ip/cpuram/cpuram.xci
+  add_files -quiet C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1/cpu.dcp
+  read_ip -quiet C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/ip/cpuram/cpuram.xci
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/constrs_1/new/cpu_pins.xdc
+  read_xdc C:/Users/yelar/Desktop/cpu/cpu.srcs/constrs_1/new/cpu_pins.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

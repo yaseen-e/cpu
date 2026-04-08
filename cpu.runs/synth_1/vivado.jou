@@ -3,12 +3,12 @@
 # SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Sun Mar  2 14:18:32 2025
-# Process ID: 3988
-# Current directory: C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.runs/synth_1
+# Start of session at: Wed Apr  8 15:50:11 2026
+# Process ID: 23144
+# Current directory: C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1
 # Command line: vivado.exe -log cpu.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source cpu.tcl
-# Log file: C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.runs/synth_1/cpu.vds
-# Journal file: C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.runs/synth_1\vivado.jou
-# Running On: PARIKHC-202FE2, OS: Windows, CPU Frequency: 1690 MHz, CPU Physical cores: 4, Host memory: 16888 MB
+# Log file: C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1/cpu.vds
+# Journal file: C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1\vivado.jou
+# Running On: YaseenLaptop, OS: Windows, CPU Frequency: 2995 MHz, CPU Physical cores: 4, Host memory: 17005 MB
 #-----------------------------------------------------------
 source cpu.tcl -notrace

@@ -3,18 +3,18 @@
 # SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Sun Mar  2 14:18:32 2025
-# Process ID: 3988
-# Current directory: C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.runs/synth_1
+# Start of session at: Wed Apr  8 15:50:11 2026
+# Process ID: 23144
+# Current directory: C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1
 # Command line: vivado.exe -log cpu.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source cpu.tcl
-# Log file: C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.runs/synth_1/cpu.vds
-# Journal file: C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.runs/synth_1\vivado.jou
-# Running On: PARIKHC-202FE2, OS: Windows, CPU Frequency: 1690 MHz, CPU Physical cores: 4, Host memory: 16888 MB
+# Log file: C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1/cpu.vds
+# Journal file: C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1\vivado.jou
+# Running On: YaseenLaptop, OS: Windows, CPU Frequency: 2995 MHz, CPU Physical cores: 4, Host memory: 17005 MB
 #-----------------------------------------------------------
 source cpu.tcl -notrace
-create_project: Time (s): cpu = 00:00:27 ; elapsed = 00:00:44 . Memory (MB): peak = 544.820 ; gain = 270.902
-Command: read_checkpoint -auto_incremental -incremental C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/utils_1/imports/synth_1/cpu.dcp
-INFO: [Vivado 12-5825] Read reference checkpoint from C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/utils_1/imports/synth_1/cpu.dcp for incremental synthesis
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 450.605 ; gain = 165.414
+Command: read_checkpoint -auto_incremental -incremental C:/Users/yelar/Desktop/cpu/cpu.srcs/utils_1/imports/synth_1/cpu.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/yelar/Desktop/cpu/cpu.srcs/utils_1/imports/synth_1/cpu.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
 Command: synth_design -top cpu -part xc7s50csga324-1
 Starting synth_design
@@ -25,74 +25,74 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 9128
+INFO: [Synth 8-7075] Helper process launched with PID 17792
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 1358.621 ; gain = 413.117
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1269.648 ; gain = 410.781
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'cpu' [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/cpu.vhd:45]
-INFO: [Synth 8-3491] module 'alu' declared at 'C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/alu.vhd:38' bound to instance 'U1' of component 'alu' [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/cpu.vhd:120]
-INFO: [Synth 8-638] synthesizing module 'alu' [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/alu.vhd:45]
-INFO: [Synth 8-256] done synthesizing module 'alu' (0#1) [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/alu.vhd:45]
-INFO: [Synth 8-3491] module 'microram' declared at 'C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/microram.vhd:37' bound to instance 'U2' of component 'microram' [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/cpu.vhd:126]
-INFO: [Synth 8-638] synthesizing module 'microram' [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/microram.vhd:46]
-INFO: [Synth 8-3491] module 'cpuram' declared at 'C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.runs/synth_1/.Xil/Vivado-3988-PARIKHC-202FE2/realtime/cpuram_stub.vhdl:6' bound to instance 'U1' of component 'cpuram' [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/microram.vhd:60]
-INFO: [Synth 8-638] synthesizing module 'cpuram' [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.runs/synth_1/.Xil/Vivado-3988-PARIKHC-202FE2/realtime/cpuram_stub.vhdl:17]
-INFO: [Synth 8-256] done synthesizing module 'microram' (0#1) [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/microram.vhd:46]
-INFO: [Synth 8-226] default block is never used [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/cpu.vhd:143]
-INFO: [Synth 8-226] default block is never used [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/cpu.vhd:170]
-INFO: [Synth 8-256] done synthesizing module 'cpu' (0#1) [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/cpu.vhd:45]
-WARNING: [Synth 8-6014] Unused sequential element V_reg was removed.  [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/cpu.vhd:165]
-WARNING: [Synth 8-6014] Unused sequential element N_reg was removed.  [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/cpu.vhd:163]
-WARNING: [Synth 8-6014] Unused sequential element Z_reg was removed.  [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/sources_1/new/cpu.vhd:164]
+INFO: [Synth 8-638] synthesizing module 'cpu' [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/cpu.vhd:45]
+INFO: [Synth 8-3491] module 'alu' declared at 'C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/alu.vhd:38' bound to instance 'U1' of component 'alu' [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/cpu.vhd:120]
+INFO: [Synth 8-638] synthesizing module 'alu' [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/alu.vhd:45]
+INFO: [Synth 8-256] done synthesizing module 'alu' (0#1) [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/alu.vhd:45]
+INFO: [Synth 8-3491] module 'microram' declared at 'C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/microram.vhd:37' bound to instance 'U2' of component 'microram' [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/cpu.vhd:126]
+INFO: [Synth 8-638] synthesizing module 'microram' [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/microram.vhd:46]
+INFO: [Synth 8-3491] module 'cpuram' declared at 'C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1/.Xil/Vivado-23144-YaseenLaptop/realtime/cpuram_stub.vhdl:6' bound to instance 'U1' of component 'cpuram' [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/microram.vhd:60]
+INFO: [Synth 8-638] synthesizing module 'cpuram' [C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1/.Xil/Vivado-23144-YaseenLaptop/realtime/cpuram_stub.vhdl:17]
+INFO: [Synth 8-256] done synthesizing module 'microram' (0#1) [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/microram.vhd:46]
+INFO: [Synth 8-226] default block is never used [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/cpu.vhd:143]
+INFO: [Synth 8-226] default block is never used [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/cpu.vhd:170]
+INFO: [Synth 8-256] done synthesizing module 'cpu' (0#1) [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/cpu.vhd:45]
+WARNING: [Synth 8-6014] Unused sequential element V_reg was removed.  [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/cpu.vhd:165]
+WARNING: [Synth 8-6014] Unused sequential element N_reg was removed.  [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/cpu.vhd:163]
+WARNING: [Synth 8-6014] Unused sequential element Z_reg was removed.  [C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/cpu.vhd:164]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1454.086 ; gain = 508.582
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1365.133 ; gain = 506.266
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:22 . Memory (MB): peak = 1454.086 ; gain = 508.582
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1365.133 ; gain = 506.266
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:22 . Memory (MB): peak = 1454.086 ; gain = 508.582
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1365.133 ; gain = 506.266
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1454.086 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1365.133 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [c:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.gen/sources_1/ip/cpuram/cpuram/cpuram_in_context.xdc] for cell 'U2/U1'
-Finished Parsing XDC File [c:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.gen/sources_1/ip/cpuram/cpuram/cpuram_in_context.xdc] for cell 'U2/U1'
-Parsing XDC File [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/constrs_1/new/cpu_pins.xdc]
-Finished Parsing XDC File [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/constrs_1/new/cpu_pins.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/constrs_1/new/cpu_pins.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/cpu_propImpl.xdc].
+Parsing XDC File [c:/Users/yelar/Desktop/cpu/cpu.gen/sources_1/ip/cpuram/cpuram/cpuram_in_context.xdc] for cell 'U2/U1'
+Finished Parsing XDC File [c:/Users/yelar/Desktop/cpu/cpu.gen/sources_1/ip/cpuram/cpuram/cpuram_in_context.xdc] for cell 'U2/U1'
+Parsing XDC File [C:/Users/yelar/Desktop/cpu/cpu.srcs/constrs_1/new/cpu_pins.xdc]
+Finished Parsing XDC File [C:/Users/yelar/Desktop/cpu/cpu.srcs/constrs_1/new/cpu_pins.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/yelar/Desktop/cpu/cpu.srcs/constrs_1/new/cpu_pins.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/cpu_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/cpu_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1553.539 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1469.480 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1553.539 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1469.480 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:37 ; elapsed = 00:00:42 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7s50csga324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:37 ; elapsed = 00:00:43 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property CLOCK_BUFFER_TYPE = NONE for clk. (constraint file  C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.srcs/constrs_1/new/cpu_pins.xdc, line 5).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for clk. (constraint file  C:/Users/yelar/Desktop/cpu/cpu.srcs/constrs_1/new/cpu_pins.xdc, line 5).
 Applied set_property KEEP_HIERARCHY = SOFT for U2/U1. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:37 ; elapsed = 00:00:43 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'CurrState_reg' in module 'cpu'
 ---------------------------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'CurrState_reg' in module 'c
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'CurrState_reg' using encoding 'sequential' in module 'cpu'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:38 ; elapsed = 00:00:44 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -151,25 +151,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:47 ; elapsed = 00:00:53 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:01 ; elapsed = 00:01:07 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:01 ; elapsed = 00:01:07 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished Timing Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:01 ; elapsed = 00:01:07 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -187,37 +187,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:12 ; elapsed = 00:01:18 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished IO Insertion : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:12 ; elapsed = 00:01:18 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:12 ; elapsed = 00:01:18 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:12 ; elapsed = 00:01:18 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:12 ; elapsed = 00:01:18 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:12 ; elapsed = 00:01:18 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -249,18 +249,18 @@ Report Cell Usage:
 |13    |OBUF        |    16|
 +------+------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:12 ; elapsed = 00:01:18 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 1469.480 ; gain = 610.613
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:50 ; elapsed = 00:01:13 . Memory (MB): peak = 1553.539 ; gain = 508.582
-Synthesis Optimization Complete : Time (s): cpu = 00:01:12 ; elapsed = 00:01:18 . Memory (MB): peak = 1553.539 ; gain = 608.035
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:30 . Memory (MB): peak = 1469.480 ; gain = 506.266
+Synthesis Optimization Complete : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 1469.480 ; gain = 610.613
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1553.539 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1469.480 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 14 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1553.539 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1469.480 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
@@ -268,7 +268,7 @@ Synth Design complete | Checksum: 7caa031a
 INFO: [Common 17-83] Releasing license: Synthesis
 35 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:26 ; elapsed = 00:02:02 . Memory (MB): peak = 1553.539 ; gain = 977.902
-INFO: [Common 17-1381] The checkpoint 'C:/Chirag/Winter25/EGR426/Projects/Project3_Mar20/cpu/cpu.runs/synth_1/cpu.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:33 ; elapsed = 00:00:57 . Memory (MB): peak = 1469.480 ; gain = 989.332
+INFO: [Common 17-1381] The checkpoint 'C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1/cpu.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file cpu_utilization_synth.rpt -pb cpu_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Mar  2 14:21:32 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Apr  8 15:51:33 2026...

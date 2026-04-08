@@ -3,12 +3,13 @@
 # SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Wed Apr  8 15:51:41 2026
-# Process ID: 8444
-# Current directory: C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1
-# Command line: vivado.exe -log cpu.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source cpu.tcl -notrace
-# Log file: C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1/cpu.vdi
-# Journal file: C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1\vivado.jou
+# Start of session at: Tue Apr  7 17:15:24 2026
+# Process ID: 13276
+# Current directory: C:/Users/yelar/Desktop/cpu
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13856 C:\Users\yelar\Desktop\cpu\cpu.xpr
+# Log file: C:/Users/yelar/Desktop/cpu/vivado.log
+# Journal file: C:/Users/yelar/Desktop/cpu\vivado.jou
 # Running On: YaseenLaptop, OS: Windows, CPU Frequency: 2995 MHz, CPU Physical cores: 4, Host memory: 17005 MB
 #-----------------------------------------------------------
-source cpu.tcl -notrace
+start_gui
+open_project C:/Users/yelar/Desktop/cpu/cpu.xpr

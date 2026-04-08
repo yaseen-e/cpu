@@ -114,6 +114,7 @@ end function;
 signal Exc_RegWrite : STD_LOGIC;        -- Latch data bus in A or B
 signal Exc_CCWrite : STD_LOGIC;         -- Latch ALU status bits in CCR
 signal Exc_IOWrite : STD_LOGIC;         -- Latch data bus in I/O
+signal Exc_IOBCD : STD_LOGIC;
 	
 begin
 -- ------------ Instantiate the ALU component ---------------
@@ -210,6 +211,11 @@ begin
 						    else
 							   Outport1 <= DATA;
 						    end if;
+						 end if;
+					     
+					     if(Exc_IOBCD = '1') then      -- Write BCD to Outport 0 or Outport1
+					       Outport0 <= BCD0(DATA(3 downto 0));
+					       Outport1 <= BCD0(DATA(7 downto 4));  
 					     end if;
 					
 			when Others => CurrState <= Fetch;
@@ -271,6 +277,14 @@ case CurrState is
 							       DATA <= STD_LOGIC_VECTOR(B);
 						        end if;
 						        Exc_IOWrite <= '1';
+						        
+						  when "0011100" =>                       -- BCD0 R
+						      if(IR(0) = '0') then
+						          DATA <= STD_LOGIC_VECTOR(A);
+						      else
+						          DATA <= STD_LOGIC_VECTOR(B);
+						      end if;
+						      Exc_IOBCD <= '1';
 						
 					      when "0000110"|"0000111" =>	         -- IN P,R
 						        if(IR(1) = '0') then

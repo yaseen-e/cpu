@@ -3,12 +3,12 @@
 # SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Sun Mar 10 20:10:15 2024
-# Process ID: 17992
-# Current directory: C:/Chirag/Winter24/EGR426/Projects/Project3_Mar21/cpu/cpu.runs/cpuram_synth_1
+# Start of session at: Wed Apr  8 15:49:47 2026
+# Process ID: 7352
+# Current directory: C:/Users/yelar/Desktop/cpu/cpu.runs/cpuram_synth_1
 # Command line: vivado.exe -log cpuram.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source cpuram.tcl
-# Log file: C:/Chirag/Winter24/EGR426/Projects/Project3_Mar21/cpu/cpu.runs/cpuram_synth_1/cpuram.vds
-# Journal file: C:/Chirag/Winter24/EGR426/Projects/Project3_Mar21/cpu/cpu.runs/cpuram_synth_1\vivado.jou
-# Running On: PARIKHC-202FE2, OS: Windows, CPU Frequency: 1690 MHz, CPU Physical cores: 4, Host memory: 16888 MB
+# Log file: C:/Users/yelar/Desktop/cpu/cpu.runs/cpuram_synth_1/cpuram.vds
+# Journal file: C:/Users/yelar/Desktop/cpu/cpu.runs/cpuram_synth_1\vivado.jou
+# Running On: YaseenLaptop, OS: Windows, CPU Frequency: 2995 MHz, CPU Physical cores: 4, Host memory: 17005 MB
 #-----------------------------------------------------------
 source cpuram.tcl -notrace
