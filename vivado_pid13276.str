@@ -153,3 +153,268 @@ Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // HMemoryUtils.trashcanNow. Engine heap size: 1,155 MB. GUI used memory: 92 MB. Current time: 4/7/26, 5:16:38 PM EDT
 // Tcl Message: open_project: Time (s): cpu = 00:00:40 ; elapsed = 00:00:20 . Memory (MB): peak = 1493.402 ; gain = 422.715 
 // Project name: cpu; location: C:/Users/yelar/Desktop/cpu; part: xc7s50csga324-1
+dismissDialog("Open Project"); // bq
+// [GUI Memory]: 147 MB (+6229kb) [00:00:45]
+// Tcl Message: update_compile_order -fileset sources_1 
+// [GUI Memory]: 159 MB (+5023kb) [00:00:48]
+// [GUI Memory]: 168 MB (+733kb) [00:07:30]
+// WARNING: HEventQueue.dispatchEvent() is taking  159185 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1673837 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,186 MB. GUI used memory: 92 MB. Current time: 4/7/26, 5:57:51 PM EDT
+// WARNING: HEventQueue.dispatchEvent() is taking  914301 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,186 MB. GUI used memory: 93 MB. Current time: 4/7/26, 6:27:51 PM EDT
+// HMemoryUtils.trashcanNow. Engine heap size: 1,186 MB. GUI used memory: 74 MB. Current time: 4/7/26, 6:57:54 PM EDT
+// WARNING: HEventQueue.dispatchEvent() is taking  1009364 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 1009482 ms. Increasing delay to 3028446 ms.
+// WARNING: HSwingWorker (Update Runs Swing Worker) is taking 1009933 ms. Increasing delay to 3000 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,186 MB. GUI used memory: 74 MB. Current time: 4/7/26, 7:27:56 PM EDT
+// HMemoryUtils.trashcanNow. Engine heap size: 1,186 MB. GUI used memory: 73 MB. Current time: 4/7/26, 7:57:59 PM EDT
+// WARNING: HEventQueue.dispatchEvent() is taking  537857 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  40719461 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,186 MB. GUI used memory: 71 MB. Current time: 4/8/26, 7:33:25 AM EDT
+// WARNING: HEventQueue.dispatchEvent() is taking  1399 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,186 MB. GUI used memory: 72 MB. Current time: 4/8/26, 3:30:06 PM EDT
+// Elapsed time: 80243 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, cpu(a) (cpu.vhd)]", 1); // E
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, cpu(a) (cpu.vhd)]", 1); // E
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 43 ms. Decreasing delay to 2043 ms.
+// Elapsed time: 159 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, cpu(a) (cpu.vhd)]", 1); // E
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, cpu(a) (cpu.vhd)]", 1); // E
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, cpu(a) (cpu.vhd)]", 1); // E
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, cpu(a) (cpu.vhd), U2 : microram(a) (microram.vhd)]", 3); // E
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, cpu(a) (cpu.vhd), U2 : microram(a) (microram.vhd), U1 : cpuram (cpuram.xci)]", 4); // E
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Show IP Hierarchy"); // u
+// PAPropertyPanels.initPanels (microram_sim.vhd) elapsed time: 0.2s
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, microram_sim(a) (microram_sim.vhd)]", 5, false); // E
+// Elapsed time: 11 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 7); // E
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 7); // E
+// WARNING: HEventQueue.dispatchEvent() is taking  716369 ms.
+// Elapsed time: 751 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 21, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a
+dismissDialog("Synthesis is Out-of-date"); // u
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: reset_run synth_1 
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: INFO: [Project 1-1161] Replacing file C:/Users/yelar/Desktop/cpu/cpu.srcs/utils_1/imports/synth_1/cpu.dcp with file C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1/cpu.dcp 
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run cpuram_synth_1 
+// TclEventType: FILE_SET_CHANGE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// 'ct' command handler elapsed time: 6 seconds
+dismissDialog("Launch Runs"); // cw
+// TclEventType: LOAD_FEATURE
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 4 
+// Tcl Message: INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'cpuram'... 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Wed Apr  8 15:49:44 2026] Launched cpuram_synth_1, synth_1... Run output will be captured here: cpuram_synth_1: C:/Users/yelar/Desktop/cpu/cpu.runs/cpuram_synth_1/runme.log synth_1: C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1/runme.log [Wed Apr  8 15:49:44 2026] Launched impl_1... Run output will be captured here: C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1/runme.log 
+dismissDialog("Generate Bitstream"); // bq
+// Elapsed Time for: 'L.f': 22h:33m:09s
+// TclEventType: RUN_STATUS_CHANGE
+// Elapsed Time for: 'L.f': 22h:33m:11s
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// [GUI Memory]: 191 MB (+14945kb) [22:34:59]
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// Elapsed time: 213 seconds
+selectRadioButton(PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER, "Open Hardware Manager"); // a
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl (Dont Echo) Command: 'rdi::info_commands get_hw_probes'
+// Tcl (Dont Echo) Command: 'load_features labtools'
+// TclEventType: LOAD_FEATURE
+// TclEventType: HW_SESSION_OPEN
+// Tcl Message: open_hw_manager 
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // t
+dismissDialog("Open Hardware Manager"); // bq
+selectButton(PAResourceOtoP.ProgramDebugTab_OPEN_TARGET, "Open target"); // g
+selectMenuItem(PAResourceCommand.PACommandNames_AUTO_CONNECT_TARGET, "Auto Connect"); // ao
+// Run Command: PAResourceCommand.PACommandNames_AUTO_CONNECT_TARGET
+// Tcl Message: connect_hw_server -allow_non_jtag 
+// Tcl Message: INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121 
+// Tcl Message: INFO: [Labtools 27-2222] Launching hw_server... 
+// TclEventType: HW_SERVER_UPDATE
+// Tcl Message: INFO: [Labtools 27-2221] Launch Output: ECHO is off. ECHO is off.  ****** Xilinx hw_server v2023.1   **** Build date : May  7 2023 at 15:26:57     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.   INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0 INFO: [Labtools 27-3417] Launching cs_server... 
+// TclEventType: HW_SERVER_UPDATE
+// Tcl Message: INFO: [Labtools 27-2221] Launch Output: ECHO is off. ECHO is off.   ******** Xilinx cs_server v2023.1.0   ****** Build date   : Apr 10 2023-11:59:24     **** Build number : 2023.1.1681142364       ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.       ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.    
+// Tcl Message: connect_hw_server: Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 1526.414 ; gain = 6.957 
+// TclEventType: HW_TARGET_CHANGE
+// TclEventType: HW_TARGET_CLOSE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_ADD
+// TclEventType: HW_TARGET_UPDATE
+// Tcl Message: open_hw_target 
+// Tcl Message: INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Xilinx/88724820039CA 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1/cpu.bit} [get_hw_devices xc7s50_0] 
+// Tcl Message: current_hw_device [get_hw_devices xc7s50_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7s50_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1435] Device xc7s50 (JTAG device index = 0) is not programmed (DONE status = 0). 
+dismissDialog("Auto Connect"); // bq
+selectButton(PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, "Program device"); // g
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program"); // a
+dismissDialog("Program Device"); // aP
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROBES.FILE {} [get_hw_devices xc7s50_0] 
+// Tcl Message: set_property FULL_PROBES.FILE {} [get_hw_devices xc7s50_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1/cpu.bit} [get_hw_devices xc7s50_0] 
+// Tcl Message: program_hw_devices [get_hw_devices xc7s50_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: INFO: [Labtools 27-3164] End of startup status: HIGH 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7s50_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1434] Device xc7s50 (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it. 
+// 'D' command handler elapsed time: 3 seconds
+dismissDialog("Program Device"); // bq
+// Elapsed time: 18 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // f - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_PROJECT_MANAGER
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // f - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, cpu(a) (cpu.vhd), U2 : microram(a) (microram.vhd), U1 : cpuram (cpuram.xci)]", 4); // E
+// [GUI Memory]: 200 MB (+291kb) [22:38:06]
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Show IP Hierarchy"); // u
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Coefficient Files]", 6); // E
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Coefficient Files, testfile.coe]", 7, false); // E
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Coefficient Files, testfile.coe]", 7, false, false, false, false, false, true); // E - Double Click
+selectCodeEditor("testfile.coe", 154, 474); // ad
+selectCodeEditor("testfile.coe", 149, 416); // ad
+selectCodeEditor("testfile.coe", 149, 416, false, false, false, false, true); // ad - Double Click
+selectCodeEditor("testfile.coe", 153, 587); // ad
+selectCodeEditor("testfile.coe", 153, 587, false, false, false, false, true); // ad - Double Click
+// Elapsed time: 51 seconds
+selectCodeEditor("testfile.coe", 171, 521); // ad
+// Elapsed time: 27 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, cpu(a) (cpu.vhd)]", 1, true); // E - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, cpu(a) (cpu.vhd)]", 1, true, false, false, false, false, true); // E - Double Click - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, cpu(a) (cpu.vhd)]", 1); // E
+// Elapsed time: 181 seconds
+selectCodeEditor("cpu.vhd", 698, 536); // ad
+selectCodeEditor("cpu.vhd", 831, 586); // ad
+selectCodeEditor("cpu.vhd", 789, 553); // ad
+// HMemoryUtils.trashcanNow. Engine heap size: 1,186 MB. GUI used memory: 107 MB. Current time: 4/8/26, 4:00:09 PM EDT
+// Elapsed time: 97 seconds
+selectCodeEditor("cpu.vhd", 913, 671); // ad
+typeControlKey((HResource) null, "cpu.vhd", 'c'); // ad
+selectCodeEditor("cpu.vhd", 608, 737); // ad
+typeControlKey((HResource) null, "cpu.vhd", 'v'); // ad
+selectCodeEditor("cpu.vhd", 837, 741); // ad
+selectCodeEditor("cpu.vhd", 937, 610); // ad
+selectCodeEditor("cpu.vhd", 914, 747); // ad
+// Elapsed time: 59 seconds
+selectCodeEditor("cpu.vhd", 718, 268); // ad
+// Elapsed time: 11 seconds
+selectCodeEditor("cpu.vhd", 872, 285); // ad
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'L.f': 22h:45m:13s
+// Elapsed Time for: 'L.f': 22h:45m:15s
+// Elapsed time: 10 seconds
+selectCodeEditor("cpu.vhd", 682, 497); // ad
+selectCodeEditor("cpu.vhd", 503, 742); // ad
+selectCodeEditor("cpu.vhd", 503, 742, false, false, false, false, true); // ad - Double Click
+selectCodeEditor("cpu.vhd", 525, 45); // ad
+selectCodeEditor("cpu.vhd", 525, 45, false, false, false, false, true); // ad - Double Click
+selectCodeEditor("cpu.vhd", 963, 441); // ad
+// Elapsed time: 111 seconds
+selectCodeEditor("cpu.vhd", 497, 574); // ad
+selectCodeEditor("cpu.vhd", 497, 574, false, false, false, false, true); // ad - Double Click
+typeControlKey((HResource) null, "cpu.vhd", 'c'); // ad
+selectCodeEditor("cpu.vhd", 112, 71); // ad
+selectCodeEditor("cpu.vhd", 112, 71, false, false, false, false, true); // ad - Double Click
+typeControlKey((HResource) null, "cpu.vhd", 'v'); // ad
+selectCodeEditor("cpu.vhd", 254, 45); // ad
+selectCodeEditor("cpu.vhd", 233, 239); // ad
+selectCodeEditor("cpu.vhd", 235, 228); // ad
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("cpu.vhd", 235, 241); // ad
+// Elapsed Time for: 'L.f': 22h:47m:49s
+selectCodeEditor("cpu.vhd", 199, 259); // ad
+// Elapsed Time for: 'L.f': 22h:47m:51s
+selectCodeEditor("cpu.vhd", 185, 276); // ad
+selectCodeEditor("cpu.vhd", 107, 241); // ad
+// Elapsed time: 89 seconds
+selectCodeEditor("cpu.vhd", 137, 175); // ad
+selectCodeEditor("cpu.vhd", 137, 175, false, false, false, false, true); // ad - Double Click
+// Elapsed time: 25 seconds
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "Exc_IOWrite"); // d.c
+selectCodeEditor("cpu.vhd", 533, 425); // ad
+// Elapsed time: 215 seconds
+selectCodeEditor("cpu.vhd", 654, 741); // ad
+selectCodeEditor("cpu.vhd", 654, 741, false, false, false, false, true); // ad - Double Click
+// Elapsed time: 21 seconds
+selectCodeEditor("cpu.vhd", 144, 163); // ad
+selectCodeEditor("cpu.vhd", 143, 184); // ad
+selectCodeEditor("cpu.vhd", 143, 184, false, false, false, false, true); // ad - Double Click
+selectCodeEditor("cpu.vhd", 476, 520); // ad
+// Elapsed time: 10 seconds
+selectCodeEditor("cpu.vhd", 457, 553); // ad
+selectCodeEditor("cpu.vhd", 457, 680); // ad
+selectCodeEditor("cpu.vhd", 876, 647); // ad
+typeControlKey((HResource) null, "cpu.vhd", 'v'); // ad
+// Elapsed time: 19 seconds
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+selectCodeEditor("cpu.vhd", 524, 307); // ad
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'L.f': 22h:55m:37s
+// Elapsed time: 55 seconds
+selectCodeEditor("cpu.vhd", 500, 361); // ad
+// Elapsed Time for: 'L.f': 22h:55m:39s
+// TclEventType: HW_TARGET_NEEDS_CLOSE
+// TclEventType: HW_TARGET_CLOSE
+// TclEventType: HW_SYSMON_DELETE
+// TclEventType: HW_TARGET_UPDATE
+// TclEventType: DEBUG_PROBE_DELETE
+// Tcl Message: ERROR: [Labtoolstcl 44-513] HW Target shutdown. Closing target: localhost:3121/xilinx_tcf/Xilinx/88724820039CA 
+// TclEventType: HW_TARGET_NEEDS_CLOSE
+// TclEventType: HW_SERVER_UPDATE
+// Elapsed time: 238 seconds
+selectButton(PAResourceAtoD.CmdMsgDialog_OK, "OK"); // f
+dismissDialog("Close Hardware Target"); // j.a
+// Elapsed time: 37 seconds
+selectCodeEditor("cpu.vhd", 420, 339); // ad
+selectCodeEditor("cpu.vhd", 420, 339, false, false, false, false, true); // ad - Double Click
+// Elapsed time: 49 seconds
+selectCodeEditor("cpu.vhd", 473, 282); // ad
