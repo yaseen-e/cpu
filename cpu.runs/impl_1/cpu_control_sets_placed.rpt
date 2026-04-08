@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Wed Apr  8 15:52:35 2026
+| Date         : Wed Apr  8 16:37:28 2026
 | Host         : YaseenLaptop running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file cpu_control_sets_placed.rpt
 | Design       : cpu
@@ -62,7 +62,7 @@ Table of Contents
 | No           | No                    | Yes                    |               2 |            2 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |              89 |           28 |
+| Yes          | No                    | Yes                    |              89 |           30 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -74,14 +74,14 @@ Table of Contents
 | Clock Signal |    Enable Signal    | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +--------------+---------------------+------------------+------------------+----------------+--------------+
 |  clk_IBUF    |                     | reset_IBUF       |                2 |              2 |         1.00 |
-|  clk_IBUF    | A                   | reset_IBUF       |                3 |              8 |         2.67 |
-|  clk_IBUF    | Outport1[7]_i_1_n_0 | reset_IBUF       |                3 |              8 |         2.67 |
-|  clk_IBUF    | Outport0[7]_i_1_n_0 | reset_IBUF       |                3 |              8 |         2.67 |
-|  clk_IBUF    | B                   | reset_IBUF       |                4 |              8 |         2.00 |
-|  clk_IBUF    | IR                  | reset_IBUF       |                1 |              8 |         8.00 |
+|  clk_IBUF    | IR                  | reset_IBUF       |                3 |              8 |         2.67 |
+|  clk_IBUF    | Outport0[7]_i_1_n_0 | reset_IBUF       |                2 |              8 |         4.00 |
+|  clk_IBUF    | Outport1[7]_i_1_n_0 | reset_IBUF       |                2 |              8 |         4.00 |
+|  clk_IBUF    | B                   | reset_IBUF       |                3 |              8 |         2.67 |
+|  clk_IBUF    | A                   | reset_IBUF       |                4 |              8 |         2.00 |
 |  clk_IBUF    | MDR                 | reset_IBUF       |                4 |              8 |         2.00 |
-|  clk_IBUF    | U2/E[0]             | reset_IBUF       |                2 |              9 |         4.50 |
-|  clk_IBUF    | U2/temp             | reset_IBUF       |                8 |             32 |         4.00 |
+|  clk_IBUF    | U1/E[0]             | reset_IBUF       |                4 |              9 |         2.25 |
+|  clk_IBUF    | U1/temp             | reset_IBUF       |                8 |             32 |         4.00 |
 +--------------+---------------------+------------------+------------------+----------------+--------------+
 
 

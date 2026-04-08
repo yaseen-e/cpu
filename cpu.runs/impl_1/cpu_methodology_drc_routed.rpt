@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Wed Apr  8 15:53:01 2026
+| Date         : Wed Apr  8 16:37:54 2026
 | Host         : YaseenLaptop running 64-bit major release  (build 9200)
 | Command      : report_methodology -file cpu_methodology_drc_routed.rpt -pb cpu_methodology_drc_routed.pb -rpx cpu_methodology_drc_routed.rpx
 | Design       : cpu
@@ -500,10 +500,9 @@ Related violations: <none>
 
 CKLD-2#1 Warning
 Clock Net has IO Driver, not a Clock Buf, and/or non-Clock loads  
-Clock net clk_IBUF is directly driven by an IO rather than a Clock Buffer or may be an IO driving a mix of Clock Buffer and non-Clock loads. This connectivity should be reviewed and corrected as appropriate. Driver(s): temp_reg[21]/C, temp_reg[22]/C, temp_reg[23]/C, temp_reg[24]/C,
-temp_reg[25]/C, temp_reg[26]/C, temp_reg[27]/C, temp_reg[28]/C,
-temp_reg[29]/C, temp_reg[2]/C, temp_reg[30]/C, temp_reg[31]/C,
-temp_reg[3]/C, temp_reg[4]/C, temp_reg[7]/C (the first 15 of 93 listed)
+Clock net clk_IBUF is directly driven by an IO rather than a Clock Buffer or may be an IO driving a mix of Clock Buffer and non-Clock loads. This connectivity should be reviewed and corrected as appropriate. Driver(s): A_reg[0]/C, A_reg[1]/C, A_reg[2]/C, A_reg[3]/C, A_reg[4]/C, A_reg[5]/C,
+A_reg[6]/C, A_reg[7]/C, B_reg[0]/C, B_reg[1]/C, B_reg[2]/C, B_reg[3]/C,
+B_reg[4]/C, B_reg[5]/C, B_reg[6]/C (the first 15 of 93 listed)
 Related violations: <none>
 
 

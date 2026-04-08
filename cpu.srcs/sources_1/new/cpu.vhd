@@ -108,13 +108,33 @@ begin
   end if;
  return RETVAL;
 end function;
+
+-- -----------------------------------------------------
+-- 4-bit BCD to 7-segment decoder (abcdefgdp, active low)
+-- -----------------------------------------------------
+function BCD0(constant NIBBLE : STD_LOGIC_VECTOR(3 downto 0)) return STD_LOGIC_VECTOR is
+begin
+	case NIBBLE is
+		when "0000" => return "11000000"; -- 0
+		when "0001" => return "11111001"; -- 1
+		when "0010" => return "10100100"; -- 2
+		when "0011" => return "10110000"; -- 3
+		when "0100" => return "10011001"; -- 4
+		when "0101" => return "10010010"; -- 5
+		when "0110" => return "10000010"; -- 6
+		when "0111" => return "11111000"; -- 7
+		when "1000" => return "10000000"; -- 8
+		when "1001" => return "10010000"; -- 9
+		when others => return "11111111"; -- blank for non-BCD values
+	end case;
+end function;
 	
 -- --------- Declare variables that indicate which registers are to be written --------
 -- --------- from the DATA bus at the start of the next Fetch cycle. ------------------
 signal Exc_RegWrite : STD_LOGIC;        -- Latch data bus in A or B
 signal Exc_CCWrite : STD_LOGIC;         -- Latch ALU status bits in CCR
 signal Exc_IOWrite : STD_LOGIC;         -- Latch data bus in I/O
-signal Exc_IOBCD : STD_LOGIC;
+signal Exc_IOBCD : STD_LOGIC;           -- Latch BCD-decoded DATA nibbles to Outport0/1
 	
 begin
 -- ------------ Instantiate the ALU component ---------------
@@ -231,6 +251,7 @@ begin
 Exc_RegWrite <= '0';
 Exc_CCWrite <= '0';
 Exc_IOWrite <= '0';
+Exc_IOBCD <= '0';
 
 -- Same idea
 ALU_A <= A;
