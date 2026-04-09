@@ -41,9 +41,9 @@ entity clk_div_cpu is
 end clk_div_cpu;
 
 architecture Behavioral of clk_div_cpu is
--- 100MHz -> 10Hz (toggle every 5,000,000 cycles)
-constant CPU_DIV_MAX : unsigned(22 downto 0) := to_unsigned(4999999, 23);
-signal div_cnt : unsigned(22 downto 0);
+-- 100MHz -> 2Hz (toggle every 25,000,000 cycles)
+constant CPU_DIV_MAX : unsigned(24 downto 0) := to_unsigned(24999999, 25);
+signal div_cnt : unsigned(24 downto 0);
 signal cpu_clk_r : STD_LOGIC;
 
 begin
