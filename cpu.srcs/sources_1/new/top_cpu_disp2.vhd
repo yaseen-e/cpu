@@ -22,7 +22,8 @@ PORT(
   reset : in STD_LOGIC;
   Inport0, Inport1 : in STD_LOGIC_VECTOR(7 downto 0);
   Outport0, Outport1 : out STD_LOGIC_VECTOR(7 downto 0);
-  RegA, RegB : out STD_LOGIC_VECTOR(7 downto 0)
+  RegA, RegB : out STD_LOGIC_VECTOR(7 downto 0);
+  BCD0A_Strobe, BCD0B_Strobe : out STD_LOGIC
 );
 end component;
 
@@ -40,6 +41,8 @@ component bcd0_mux is
     reset : in STD_LOGIC;
     bcd_lo_in : in STD_LOGIC_VECTOR(7 downto 0);
     bcd_hi_in : in STD_LOGIC_VECTOR(7 downto 0);
+    strobe_a : in STD_LOGIC;
+    strobe_b : in STD_LOGIC;
     a_lo : out STD_LOGIC_VECTOR(7 downto 0);
     a_hi : out STD_LOGIC_VECTOR(7 downto 0);
     b_lo : out STD_LOGIC_VECTOR(7 downto 0);
@@ -62,6 +65,7 @@ end component;
 
 signal cpu_out0, cpu_out1 : STD_LOGIC_VECTOR(7 downto 0);
 signal cpu_reg_a, cpu_reg_b : STD_LOGIC_VECTOR(7 downto 0);
+signal bcd0a_stb, bcd0b_stb : STD_LOGIC;
 signal a_lo_s, a_hi_s : STD_LOGIC_VECTOR(7 downto 0);
 signal b_lo_s, b_hi_s : STD_LOGIC_VECTOR(7 downto 0);
 signal disp_clk_1khz : STD_LOGIC;
@@ -84,7 +88,9 @@ U_CPU : cpu
     Outport0 => cpu_out0,
     Outport1 => cpu_out1,
     RegA => cpu_reg_a,
-    RegB => cpu_reg_b
+    RegB => cpu_reg_b,
+    BCD0A_Strobe => bcd0a_stb,
+    BCD0B_Strobe => bcd0b_stb
   );
 
 Outport0 <= cpu_out0;
@@ -96,6 +102,8 @@ U_BCD0_MUX : bcd0_mux
     reset => reset,
     bcd_lo_in => cpu_reg_a,
     bcd_hi_in => cpu_reg_b,
+    strobe_a => bcd0a_stb,
+    strobe_b => bcd0b_stb,
     a_lo => a_lo_s,
     a_hi => a_hi_s,
     b_lo => b_lo_s,

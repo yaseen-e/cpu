@@ -40,7 +40,8 @@ PORT(clk : in STD_LOGIC;
 	 reset : in STD_LOGIC;
 	 Inport0, Inport1 : in STD_LOGIC_VECTOR(7 downto 0);
 	 Outport0, Outport1	: out STD_LOGIC_VECTOR(7 downto 0);
-	 RegA, RegB : out STD_LOGIC_VECTOR(7 downto 0));
+	 RegA, RegB : out STD_LOGIC_VECTOR(7 downto 0);
+	 BCD0A_Strobe, BCD0B_Strobe : out STD_LOGIC);
 end cpu;
 
 architecture a of cpu is
@@ -190,8 +191,12 @@ begin
 	 V <= '0';
 	 Outport0 <= (others => '0');
 	 Outport1 <= (others => '0');
+	 BCD0A_Strobe <= '0';
+	 BCD0B_Strobe <= '0';
 	 temp := 0;
   elsif(rising_edge(clk)) then
+	 BCD0A_Strobe <= '0';
+	 BCD0B_Strobe <= '0';
 	 case CurrState is
 		  when Fetch => IR <= DATA;
 					    if(Is4Phase(DATA)) then
@@ -238,8 +243,12 @@ begin
 						 end if;
 					     
 					     if(Exc_IOBCD = '1') then      -- Write BCD to Outport 0 or Outport1
-					       Outport0 <= BCD0(DATA(3 downto 0));
-					       Outport1 <= BCD0(DATA(7 downto 4));  
+						   -- Keep LED outports controlled by OUT only; BCD strobes drive DISP2 path.
+						   if(IR(0) = '0') then
+							 BCD0A_Strobe <= '1';
+						   else
+							 BCD0B_Strobe <= '1';
+						   end if;
 					     end if;
 					
 			when Others => CurrState <= Fetch;

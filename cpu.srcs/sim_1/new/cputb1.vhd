@@ -50,7 +50,9 @@ component cpu
          Outport0 : OUT  std_logic_vector(7 downto 0);
          Outport1 : OUT  std_logic_vector(7 downto 0);
          RegA : OUT std_logic_vector(7 downto 0);
-         RegB : OUT std_logic_vector(7 downto 0)
+         RegB : OUT std_logic_vector(7 downto 0);
+         BCD0A_Strobe : OUT std_logic;
+         BCD0B_Strobe : OUT std_logic
         );
 end component;
 
@@ -65,6 +67,8 @@ signal Outport0 : std_logic_vector(7 downto 0);
 signal Outport1 : std_logic_vector(7 downto 0);
 signal RegA : std_logic_vector(7 downto 0);
 signal RegB : std_logic_vector(7 downto 0);
+signal BCD0A_Strobe : std_logic;
+signal BCD0B_Strobe : std_logic;
 
 -- Clock period definitions
 constant clk_period : time := 10ns;
@@ -73,7 +77,9 @@ begin
 -- Instantiate the Unit Under Test (UUT)
 C1 : cpu PORT MAP (clk => clk, reset => reset, Inport0 => Inport0, Inport1 => Inport1,
                    Outport0 => Outport0, Outport1 => Outport1,
-                   RegA => RegA, RegB => RegB);
+                   RegA => RegA, RegB => RegB,
+                   BCD0A_Strobe => BCD0A_Strobe,
+                   BCD0B_Strobe => BCD0B_Strobe);
 
 -- Clock process 
 clk_process : process begin
