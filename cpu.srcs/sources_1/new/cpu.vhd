@@ -37,6 +37,7 @@ USE ieee.std_logic_arith.all;
 
 entity cpu is
 PORT(clk : in STD_LOGIC;
+	 DebClk : in STD_LOGIC;
 	 reset : in STD_LOGIC;
 	 Inport0, Inport1 : in STD_LOGIC_VECTOR(7 downto 0);
 	 Outport0, Outport1	: out STD_LOGIC_VECTOR(7 downto 0);
@@ -139,7 +140,7 @@ signal Exc_IOWrite : STD_LOGIC;         -- Latch data bus in I/O
 signal Exc_IOBCD : STD_LOGIC;           -- Latch BCD-decoded DATA nibbles to Outport0/1
 
 -- DEB counters (BTN1 clock domain). With BTN1 as clk, this is 3 clock edges.
-constant DEBOUNCE_MAX : integer := 3;
+constant DEBOUNCE_MAX : integer := 40;
 signal Debounce0 : integer range 0 to DEBOUNCE_MAX;
 signal Debounce1 : integer range 0 to DEBOUNCE_MAX;
 	
@@ -362,11 +363,11 @@ case CurrState is
 end process;
 
 -- ------------ Debounce timer 0 ----------------
-process(clk, reset)
+process(DebClk, reset)
 begin
 	if(reset = '1') then
 		Debounce0 <= DEBOUNCE_MAX;
-	elsif(rising_edge(clk)) then
+	elsif(rising_edge(DebClk)) then
 		if(Inport0(0) = '1') then
 			Debounce0 <= DEBOUNCE_MAX;
 		elsif(Debounce0 > 0) then
@@ -378,11 +379,11 @@ begin
 end process;
 
 -- ------------ Debounce timer 1 ----------------
-process(clk, reset)
+process(DebClk, reset)
 begin
 	if(reset = '1') then
 		Debounce1 <= DEBOUNCE_MAX;
-	elsif(rising_edge(clk)) then
+	elsif(rising_edge(DebClk)) then
 		if(Inport0(1) = '1') then
 			Debounce1 <= DEBOUNCE_MAX;
 		elsif(Debounce1 > 0) then

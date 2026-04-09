@@ -44,6 +44,7 @@ architecture behavior of cputb1 is
 component cpu
     PORT(
          clk : IN  std_logic;
+         DebClk : IN std_logic;
          reset : IN  std_logic;
          Inport0 : IN  std_logic_vector(7 downto 0);
          Inport1 : IN  std_logic_vector(7 downto 0);
@@ -76,6 +77,7 @@ constant clk_period : time := 10ns;
 begin
 -- Instantiate the Unit Under Test (UUT)
 C1 : cpu PORT MAP (clk => clk, reset => reset, Inport0 => Inport0, Inport1 => Inport1,
+                   DebClk => clk,
                    Outport0 => Outport0, Outport1 => Outport1,
                    RegA => RegA, RegB => RegB,
                    BCD0A_Strobe => BCD0A_Strobe,

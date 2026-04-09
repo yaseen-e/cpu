@@ -4,7 +4,6 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity top_cpu_disp2 is
   Port (
     mclk : in STD_LOGIC;
-    clk : in STD_LOGIC;
     reset : in STD_LOGIC;
     Inport0 : in STD_LOGIC_VECTOR(7 downto 0);
     Inport1 : in STD_LOGIC_VECTOR(7 downto 0);
@@ -19,12 +18,21 @@ architecture Behavioral of top_cpu_disp2 is
 component cpu is
 PORT(
   clk : in STD_LOGIC;
+  DebClk : in STD_LOGIC;
   reset : in STD_LOGIC;
   Inport0, Inport1 : in STD_LOGIC_VECTOR(7 downto 0);
   Outport0, Outport1 : out STD_LOGIC_VECTOR(7 downto 0);
   RegA, RegB : out STD_LOGIC_VECTOR(7 downto 0);
   BCD0A_Strobe, BCD0B_Strobe : out STD_LOGIC
 );
+end component;
+
+component clk_div_cpu is
+  Port (
+    clk_in : in STD_LOGIC;
+    reset : in STD_LOGIC;
+    clk_out : out STD_LOGIC
+  );
 end component;
 
 component clk_div_1khz is
@@ -69,6 +77,7 @@ signal bcd0a_stb, bcd0b_stb : STD_LOGIC;
 signal a_lo_s, a_hi_s : STD_LOGIC_VECTOR(7 downto 0);
 signal b_lo_s, b_hi_s : STD_LOGIC_VECTOR(7 downto 0);
 signal disp_clk_1khz : STD_LOGIC;
+signal cpu_clk_10hz : STD_LOGIC;
 
 begin
 
@@ -79,9 +88,17 @@ U_CLKDIV : clk_div_1khz
     clk_out => disp_clk_1khz
   );
 
+U_CPUCLK_DIV : clk_div_cpu
+  PORT MAP (
+    clk_in => mclk,
+    reset => reset,
+    clk_out => cpu_clk_10hz
+  );
+
 U_CPU : cpu
   PORT MAP (
-    clk => clk,
+    clk => cpu_clk_10hz,
+    DebClk => disp_clk_1khz,
     reset => reset,
     Inport0 => Inport0,
     Inport1 => Inport1,
@@ -98,7 +115,7 @@ Outport1 <= cpu_out1;
 
 U_BCD0_MUX : bcd0_mux
   PORT MAP (
-    clk => clk,
+    clk => cpu_clk_10hz,
     reset => reset,
     bcd_lo_in => cpu_reg_a,
     bcd_hi_in => cpu_reg_b,
