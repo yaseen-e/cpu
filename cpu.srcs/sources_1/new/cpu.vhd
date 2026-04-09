@@ -137,6 +137,11 @@ signal Exc_RegWrite : STD_LOGIC;        -- Latch data bus in A or B
 signal Exc_CCWrite : STD_LOGIC;         -- Latch ALU status bits in CCR
 signal Exc_IOWrite : STD_LOGIC;         -- Latch data bus in I/O
 signal Exc_IOBCD : STD_LOGIC;           -- Latch BCD-decoded DATA nibbles to Outport0/1
+
+-- DEB counters (BTN1 clock domain). With BTN1 as clk, this is 3 clock edges.
+constant DEBOUNCE_MAX : integer := 3;
+signal Debounce0 : integer range 0 to DEBOUNCE_MAX;
+signal Debounce1 : integer range 0 to DEBOUNCE_MAX;
 	
 begin
 -- ------------ Instantiate the ALU component ---------------
@@ -327,6 +332,22 @@ case CurrState is
 							       DATA <= Inport1;
 						        end if;
 						        Exc_RegWrite <= '1';
+						        
+						  when "0011000" | "0011001" =>    -- DEB P,R
+						      if(IR(1) = '0') then          -- DEB 0,R uses Inport0(0)
+						          if(Debounce0 = 0) then
+						              DATA <= X"01";
+						          else
+						              DATA <= X"00";
+						          end if;
+						      else                          -- DEB 1,R uses Inport0(1)
+						          if(Debounce1 = 0) then
+						              DATA <= X"01";
+						          else
+						              DATA <= X"00";
+						          end if;
+						      end if;
+						      Exc_RegWrite <= '1';
 						
 					      when "0000000"|"0000001" =>          -- LOAD M,R
 						        DATA <= RAM_DATA_OUT;
@@ -338,6 +359,38 @@ case CurrState is
 					      when others => null;
 				    end case;
 		end case;	
+end process;
+
+-- ------------ Debounce timer 0 ----------------
+process(clk, reset)
+begin
+	if(reset = '1') then
+		Debounce0 <= DEBOUNCE_MAX;
+	elsif(rising_edge(clk)) then
+		if(Inport0(0) = '1') then
+			Debounce0 <= DEBOUNCE_MAX;
+		elsif(Debounce0 > 0) then
+			Debounce0 <= Debounce0 - 1;
+		else
+			Debounce0 <= 0;
+		end if;
+	end if;
+end process;
+
+-- ------------ Debounce timer 1 ----------------
+process(clk, reset)
+begin
+	if(reset = '1') then
+		Debounce1 <= DEBOUNCE_MAX;
+	elsif(rising_edge(clk)) then
+		if(Inport0(1) = '1') then
+			Debounce1 <= DEBOUNCE_MAX;
+		elsif(Debounce1 > 0) then
+			Debounce1 <= Debounce1 - 1;
+		else
+			Debounce1 <= 0;
+		end if;
+	end if;
 end process;
 
 end a;

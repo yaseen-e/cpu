@@ -20,7 +20,7 @@ memory_initialization_vector =
 11110000
 00111000
 00001000
-01111111
+00110000
 00111000
 11110000
 00000111
@@ -46,7 +46,7 @@ memory_initialization_vector =
 ;13) CLR A
 ;14) BCD0 A
 ;15) OUT A
-;16) DEB 0,A (placeholder opcode for now)
+;16) DEB 0,A
 ;17) BCD0 A
 ;18) CLR A
 ;19) 0x07
