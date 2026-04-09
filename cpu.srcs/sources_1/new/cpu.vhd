@@ -125,7 +125,7 @@ begin
 		when "0111" => return "11111000"; -- 7
 		when "1000" => return "10000000"; -- 8
 		when "1001" => return "10010000"; -- 9
-		when others => return "11111111"; -- blank for non-BCD values
+		when others => return "10111111"; -- hyphen for non-BCD values
 	end case;
 end function;
 	

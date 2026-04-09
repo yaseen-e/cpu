@@ -3,12 +3,12 @@
 # SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Wed Apr  8 16:36:51 2026
-# Process ID: 16416
+# Start of session at: Wed Apr  8 16:57:18 2026
+# Process ID: 19312
 # Current directory: C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1
-# Command line: vivado.exe -log cpu.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source cpu.tcl -notrace
-# Log file: C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1/cpu.vdi
+# Command line: vivado.exe -log top_cpu_disp2.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top_cpu_disp2.tcl -notrace
+# Log file: C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1/top_cpu_disp2.vdi
 # Journal file: C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1\vivado.jou
 # Running On: YaseenLaptop, OS: Windows, CPU Frequency: 2995 MHz, CPU Physical cores: 4, Host memory: 17005 MB
 #-----------------------------------------------------------
-source cpu.tcl -notrace
+source top_cpu_disp2.tcl -notrace
