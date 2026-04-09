@@ -1,0 +1,40 @@
+# Vivado generated project state
+.Xil/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.gen/
+
+# Common Vivado logs and journals
+*.jou
+*.log
+*.str
+*.backup.jou
+*.backup.log
+*.pb
+*.rpx
+*.rpt
+*.vds
+*.vdi
+*.wdf
+*.lpr
+
+# Build/program outputs
+*.bit
+*.bin
+*.mcs
+*.ltx
+*.dcp
+
+# Tool/editor temp files
+*~
+*.tmp
+*.swp
+*.swo
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/

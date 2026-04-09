@@ -31,13 +31,13 @@ signal a_lo_r, a_hi_r : STD_LOGIC_VECTOR(7 downto 0);
 signal b_lo_r, b_hi_r : STD_LOGIC_VECTOR(7 downto 0);
 signal prev_lo, prev_hi : STD_LOGIC_VECTOR(7 downto 0);
 signal capture_b_next : STD_LOGIC;
+signal lock_done : STD_LOGIC;
 
 function IsBCDSeg(constant SEG : STD_LOGIC_VECTOR(7 downto 0)) return BOOLEAN is
 begin
   case SEG is
     when SEG_0 | SEG_1 | SEG_2 | SEG_3 | SEG_4
-       | SEG_5 | SEG_6 | SEG_7 | SEG_8 | SEG_9
-       | SEG_HYPHEN =>
+       | SEG_5 | SEG_6 | SEG_7 | SEG_8 | SEG_9 =>
       return true;
     when others =>
       return false;
@@ -56,8 +56,10 @@ begin
     prev_lo <= (others => '0');
     prev_hi <= (others => '0');
     capture_b_next <= '0';
+    lock_done <= '0';
   elsif(rising_edge(clk)) then
-    if(IsBCDSeg(bcd_lo_in) and IsBCDSeg(bcd_hi_in)
+    if((lock_done = '0')
+       and IsBCDSeg(bcd_lo_in) and IsBCDSeg(bcd_hi_in)
        and ((bcd_lo_in /= prev_lo) or (bcd_hi_in /= prev_hi))) then
       if(capture_b_next = '0') then
         a_lo_r <= bcd_lo_in;
@@ -67,6 +69,7 @@ begin
         b_lo_r <= bcd_lo_in;
         b_hi_r <= bcd_hi_in;
         capture_b_next <= '0';
+        lock_done <= '1';
       end if;
       prev_lo <= bcd_lo_in;
       prev_hi <= bcd_hi_in;

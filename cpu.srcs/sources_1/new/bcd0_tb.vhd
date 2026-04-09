@@ -63,7 +63,7 @@ begin
   bcd_hi_in <= "11111000"; -- 7
   wait for 40 ns;
 
-  -- Another pair overwrites A (alternating behavior)
+  -- Another pair should be ignored after A and B are captured
   bcd_lo_in <= "11000000"; -- 0
   bcd_hi_in <= "10010000"; -- 9
   wait;
