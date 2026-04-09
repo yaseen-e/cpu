@@ -39,7 +39,8 @@ entity cpu is
 PORT(clk : in STD_LOGIC;
 	 reset : in STD_LOGIC;
 	 Inport0, Inport1 : in STD_LOGIC_VECTOR(7 downto 0);
-	 Outport0, Outport1	: out STD_LOGIC_VECTOR(7 downto 0));
+	 Outport0, Outport1	: out STD_LOGIC_VECTOR(7 downto 0);
+	 RegA, RegB : out STD_LOGIC_VECTOR(7 downto 0));
 end cpu;
 
 architecture a of cpu is
@@ -139,6 +140,9 @@ signal Exc_IOBCD : STD_LOGIC;           -- Latch BCD-decoded DATA nibbles to Out
 begin
 -- ------------ Instantiate the ALU component ---------------
 U1 : alu PORT MAP (ALU_A, ALU_B, ALU_FUNC, ALU_OUT, ALU_N, ALU_V, ALU_Z);
+
+RegA <= STD_LOGIC_VECTOR(A);
+RegB <= STD_LOGIC_VECTOR(B);
 			
 -- ------------ Drive the ALU_FUNC input ----------------
 ALU_FUNC <= IR(6 downto 4);

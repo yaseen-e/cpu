@@ -90,6 +90,7 @@ add_files C:/Users/yelar/Desktop/cpu/testfile.coe
 read_vhdl -library xil_defaultlib {
   C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/alu.vhd
   C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/bcd0_mux.vhd
+  C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/clk_div_1khz.vhd
   C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/cpu.vhd
   C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/disp2_driver.vhd
   C:/Users/yelar/Desktop/cpu/cpu.srcs/sources_1/new/microram.vhd

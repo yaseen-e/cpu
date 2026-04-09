@@ -48,7 +48,9 @@ component cpu
          Inport0 : IN  std_logic_vector(7 downto 0);
          Inport1 : IN  std_logic_vector(7 downto 0);
          Outport0 : OUT  std_logic_vector(7 downto 0);
-         Outport1 : OUT  std_logic_vector(7 downto 0)
+         Outport1 : OUT  std_logic_vector(7 downto 0);
+         RegA : OUT std_logic_vector(7 downto 0);
+         RegB : OUT std_logic_vector(7 downto 0)
         );
 end component;
 
@@ -61,6 +63,8 @@ signal Inport1 : std_logic_vector(7 downto 0) := (others => '0');
 --Outputs
 signal Outport0 : std_logic_vector(7 downto 0);
 signal Outport1 : std_logic_vector(7 downto 0);
+signal RegA : std_logic_vector(7 downto 0);
+signal RegB : std_logic_vector(7 downto 0);
 
 -- Clock period definitions
 constant clk_period : time := 10ns;
@@ -68,7 +72,8 @@ constant clk_period : time := 10ns;
 begin
 -- Instantiate the Unit Under Test (UUT)
 C1 : cpu PORT MAP (clk => clk, reset => reset, Inport0 => Inport0, Inport1 => Inport1,
-                   Outport0 => Outport0, Outport1 => Outport1);
+                   Outport0 => Outport0, Outport1 => Outport1,
+                   RegA => RegA, RegB => RegB);
 
 -- Clock process 
 clk_process : process begin

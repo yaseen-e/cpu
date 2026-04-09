@@ -4,6 +4,10 @@ set_property IOSTANDARD LVCMOS33 [get_ports clk]
 #set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets clk_IBUF]
 set_property CLOCK_BUFFER_TYPE NONE [get_ports clk]
 
+# 100MHz oscillator for display scan clock
+set_property PACKAGE_PIN F14 [get_ports mclk]
+set_property IOSTANDARD LVCMOS33 [get_ports mclk]
+
 # BTN0
 set_property PACKAGE_PIN J2 [get_ports reset]  
 set_property IOSTANDARD LVCMOS33 [get_ports reset]

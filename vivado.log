@@ -3,10 +3,10 @@
 # SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Thu Apr  9 14:37:14 2026
-# Process ID: 27240
+# Start of session at: Thu Apr  9 14:48:41 2026
+# Process ID: 27432
 # Current directory: C:/Users/yelar/Desktop/cpu
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent5928 C:\Users\yelar\Desktop\cpu\cpu.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1332 C:\Users\yelar\Desktop\cpu\cpu.xpr
 # Log file: C:/Users/yelar/Desktop/cpu/vivado.log
 # Journal file: C:/Users/yelar/Desktop/cpu\vivado.jou
 # Running On: YaseenLaptop, OS: Windows, CPU Frequency: 2995 MHz, CPU Physical cores: 4, Host memory: 17005 MB
@@ -77,18 +77,14 @@ Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2023.1/data/ip'.
-open_project: Time (s): cpu = 00:00:33 ; elapsed = 00:00:17 . Memory (MB): peak = 1480.922 ; gain = 336.438
+open_project: Time (s): cpu = 00:00:23 ; elapsed = 00:00:10 . Memory (MB): peak = 1486.691 ; gain = 377.566
 update_compile_order -fileset sources_1
 reset_run synth_1
 INFO: [Project 1-1161] Replacing file C:/Users/yelar/Desktop/cpu/cpu.srcs/utils_1/imports/synth_1/cpu.dcp with file C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1/top_cpu_disp2.dcp
-reset_run cpuram_synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 4
-INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'cpuram'...
-[Thu Apr  9 14:38:08 2026] Launched cpuram_synth_1, synth_1...
-Run output will be captured here:
-cpuram_synth_1: C:/Users/yelar/Desktop/cpu/cpu.runs/cpuram_synth_1/runme.log
-synth_1: C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1/runme.log
-[Thu Apr  9 14:38:08 2026] Launched impl_1...
+[Thu Apr  9 14:49:17 2026] Launched synth_1...
+Run output will be captured here: C:/Users/yelar/Desktop/cpu/cpu.runs/synth_1/runme.log
+[Thu Apr  9 14:49:17 2026] Launched impl_1...
 Run output will be captured here: C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1/runme.log
 open_hw_manager
 connect_hw_server -allow_non_jtag
@@ -118,19 +114,11 @@ ECHO is off.
 
 
 
-connect_hw_server: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 1513.332 ; gain = 0.000
 open_hw_target
 INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Xilinx/88724820039CA
 set_property PROGRAM.FILE {C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1/top_cpu_disp2.bit} [get_hw_devices xc7s50_0]
 current_hw_device [get_hw_devices xc7s50_0]
 refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7s50_0] 0]
-INFO: [Labtools 27-1434] Device xc7s50 (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
-set_property PROBES.FILE {} [get_hw_devices xc7s50_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7s50_0]
-set_property PROGRAM.FILE {C:/Users/yelar/Desktop/cpu/cpu.runs/impl_1/top_cpu_disp2.bit} [get_hw_devices xc7s50_0]
-program_hw_devices [get_hw_devices xc7s50_0]
-INFO: [Labtools 27-3164] End of startup status: HIGH
-refresh_hw_device [lindex [get_hw_devices xc7s50_0] 0]
 INFO: [Labtools 27-1434] Device xc7s50 (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
 set_property PROBES.FILE {} [get_hw_devices xc7s50_0]
 set_property FULL_PROBES.FILE {} [get_hw_devices xc7s50_0]

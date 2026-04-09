@@ -16,25 +16,22 @@ entity disp2_driver is
 end disp2_driver;
 
 architecture Behavioral of disp2_driver is
-signal scan_cnt : unsigned(15 downto 0);
-signal mux_sel : STD_LOGIC_VECTOR(1 downto 0);
+signal scan_sel : unsigned(1 downto 0);
 
 begin
 
 process(clk, reset)
 begin
   if(reset = '1') then
-    scan_cnt <= (others => '0');
+    scan_sel <= (others => '0');
   elsif(rising_edge(clk)) then
-    scan_cnt <= scan_cnt + 1;
+    scan_sel <= scan_sel + 1;
   end if;
 end process;
 
-mux_sel <= STD_LOGIC_VECTOR(scan_cnt(15 downto 14));
-
-process(mux_sel, digit0, digit1, digit2, digit3)
+process(scan_sel, digit0, digit1, digit2, digit3)
 begin
-  case mux_sel is
+  case STD_LOGIC_VECTOR(scan_sel) is
     when "00" =>
       disp2_an <= "1110";
       disp2_seg <= digit0;
