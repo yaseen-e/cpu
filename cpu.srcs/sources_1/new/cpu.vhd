@@ -51,13 +51,13 @@ component alu is
 port(A, B : in SIGNED(7 downto 0);
         F : in STD_LOGIC_VECTOR(2 downto 0);
         Y : out SIGNED(7 downto 0);
-    N,V,Z : out STD_LOGIC);
+	N,V,Z,C : out STD_LOGIC);
 end component;
 -- ------------ Declare signals interfacing to ALU -------------
 signal ALU_A, ALU_B : SIGNED(7 downto 0);
 signal ALU_FUNC : STD_LOGIC_VECTOR(2 downto 0);
 signal ALU_OUT : SIGNED(7 downto 0);
-signal ALU_N, ALU_V, ALU_Z : STD_LOGIC;
+signal ALU_N, ALU_V, ALU_Z, ALU_C : STD_LOGIC;
 
 -- ------------ Declare the 512x8 RAM component --------------
 component microram is
@@ -91,7 +91,7 @@ signal IR : STD_LOGIC_VECTOR(7 downto 0);
 signal MDR : STD_LOGIC_VECTOR(7 downto 0);
 	
 signal A,B : SIGNED(7 downto 0);
-signal N,Z,V : STD_LOGIC;
+signal N,Z,V,C : STD_LOGIC;
 -- ---------- Declare the common data bus ------------------
 signal DATA : STD_LOGIC_VECTOR(7 downto 0);
 
@@ -100,11 +100,16 @@ signal DATA : STD_LOGIC_VECTOR(7 downto 0);
 -- 4-phase instruction rather than a 2-phase instruction
 -- -----------------------------------------------------	
 function Is4Phase(constant DATA : STD_LOGIC_VECTOR(7 downto 0)) return BOOLEAN is
-variable MSB5 : STD_LOGIC_VECTOR(4 downto 0);
 variable RETVAL : BOOLEAN;
 begin
-  MSB5 := DATA(7 downto 3);
-  if(MSB5 = "00000") then
+	if((DATA(7 downto 1) = "0000000") or   -- LOAD M,R
+		 (DATA(7 downto 1) = "0000001") or
+		 (DATA(7 downto 1) = "0000010") or   -- STOR R,M
+		 (DATA(7 downto 1) = "0000011") or
+		 (DATA(7 downto 1) = "0010000") or   -- BCC M
+		 (DATA(7 downto 1) = "0010001") or
+		 (DATA(7 downto 1) = "0010010") or   -- BCS M
+		 (DATA(7 downto 1) = "0010011")) then
 	 RETVAL := true;
   else
 	 RETVAL := false;
@@ -136,6 +141,7 @@ end function;
 -- --------- from the DATA bus at the start of the next Fetch cycle. ------------------
 signal Exc_RegWrite : STD_LOGIC;        -- Latch data bus in A or B
 signal Exc_CCWrite : STD_LOGIC;         -- Latch ALU status bits in CCR
+signal Exc_CWrite : STD_LOGIC;          -- Latch carry bit C in CCR
 signal Exc_IOWrite : STD_LOGIC;         -- Latch data bus in I/O
 signal Exc_IOBCD : STD_LOGIC;           -- Latch BCD-decoded DATA nibbles to Outport0/1
 
@@ -146,7 +152,7 @@ signal Debounce1 : integer range 0 to DEBOUNCE_MAX;
 	
 begin
 -- ------------ Instantiate the ALU component ---------------
-U1 : alu PORT MAP (ALU_A, ALU_B, ALU_FUNC, ALU_OUT, ALU_N, ALU_V, ALU_Z);
+U1 : alu PORT MAP (ALU_A, ALU_B, ALU_FUNC, ALU_OUT, ALU_N, ALU_V, ALU_Z, ALU_C);
 
 RegA <= STD_LOGIC_VECTOR(A);
 RegB <= STD_LOGIC_VECTOR(B);
@@ -195,6 +201,7 @@ begin
 	 N <= '0';
 	 Z <= '0';
 	 V <= '0';
+	 C <= '0';
 	 Outport0 <= (others => '0');
 	 Outport1 <= (others => '0');
 	 BCD0A_Strobe <= '0';
@@ -224,6 +231,16 @@ begin
 					        PC <= PC + 1;
 					        temp := temp +1;
 					     end if;
+
+					 if((IR(7 downto 1) = "0010000") or (IR(7 downto 1) = "0010001")) then
+					    if(C = '0') then
+					       PC <= UNSIGNED(IR(1) & MDR);
+					    end if;
+					 elsif((IR(7 downto 1) = "0010010") or (IR(7 downto 1) = "0010011")) then
+					    if(C = '1') then
+					       PC <= UNSIGNED(IR(1) & MDR);
+					    end if;
+					 end if;
 					     CurrState <= Fetch;
 					
 					     if(Exc_RegWrite = '1') then   -- Writing result to A or B
@@ -238,6 +255,9 @@ begin
 						    V <= ALU_V;
 						    N <= ALU_N;
 						    Z <= ALU_Z;
+						    if(Exc_CWrite = '1') then
+						       C <= ALU_C;
+						    end if;
 					     end if;
 
 					     if(Exc_IOWrite = '1') then    -- Write to Outport0 or OutPort1
@@ -269,6 +289,7 @@ begin
 -- generate latches (which are unnecessary).
 Exc_RegWrite <= '0';
 Exc_CCWrite <= '0';
+Exc_CWrite <= '0';
 Exc_IOWrite <= '0';
 Exc_IOBCD <= '0';
 
@@ -296,6 +317,9 @@ case CurrState is
 						        DATA <= STD_LOGIC_VECTOR(ALU_OUT);
 						        Exc_RegWrite <= '1';
                                 Exc_CCWrite <= '1';
+						        if((IR(7 downto 1) = "1000000") or (IR(7 downto 1) = "1001000") or (IR(7 downto 1) = "1111000")) then
+						           Exc_CWrite <= '1';
+						        end if;
 						
 					      when "1010000"			-- LSL R
 						     | "1011000"			-- LSR R
@@ -309,6 +333,9 @@ case CurrState is
 						        DATA <= STD_LOGIC_VECTOR(ALU_OUT);
 						        Exc_RegWrite <= '1';
 						        Exc_CCWrite <= '1';
+						        if((IR(7 downto 1) = "1010000") or (IR(7 downto 1) = "1011000") or (IR(7 downto 1) = "1101000")) then
+						           Exc_CWrite <= '1';
+						        end if;
 
 					      when "0000100"|"0000101" =>          -- OUT R,P
 						        if(IR(0) = '0') then
@@ -355,6 +382,12 @@ case CurrState is
 						        Exc_RegWrite <= '1';
 						
 					      when "0000010"|"0000011" =>	       -- STOR R,M
+						        null;
+
+					      when "0010000"|"0010001" =>          -- BCC M
+						        null;
+
+					      when "0010010"|"0010011" =>          -- BCS M
 						        null;
 								
 					      when others => null;

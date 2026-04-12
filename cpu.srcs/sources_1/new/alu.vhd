@@ -39,7 +39,7 @@ entity alu is
 port(A, B : in SIGNED(7 downto 0);
         F : in STD_LOGIC_VECTOR(2 downto 0);
         Y : out SIGNED(7 downto 0);
-    N,V,Z : out STD_LOGIC);
+   N,V,Z,C : out STD_LOGIC);
 end alu;
 
 architecture a of alu is
@@ -59,22 +59,37 @@ begin
 -- ---------- Update Condition Code flag bits ---------------
 process (A,B,F)
 variable RETVAL : SIGNED(7 downto 0);
+variable SUM9 : UNSIGNED(8 downto 0);
+variable UA, UB : UNSIGNED(7 downto 0);
 begin
   V <= '0';
+  C <= '0';
+
+  UA := UNSIGNED(STD_LOGIC_VECTOR(A));
+  UB := UNSIGNED(STD_LOGIC_VECTOR(B));
+
   if(F = "000") then                        -- Addition
      RETVAL := A + B;
      V <= ISOVERFLOW(A,B,RETVAL);           -- OVERFLOW flag
+     SUM9 := ('0' & UA) + ('0' & UB);
+     C <= SUM9(8);
   elsif(F = "001") then                     -- Subtraction
      RETVAL := A - B;
      V <= ISOVERFLOW(A,-B,RETVAL);
+     if(UA < UB) then
+        C <= '1';
+     end if;
   elsif(F = "010") then                             -- LSL
      RETVAL := A(6 downto 0) & '0';
+     C <= A(7);
   elsif(F = "011") then                             -- LSR
      RETVAL := '0' & A(7 downto 1);
+     C <= A(0);
   elsif(F = "100") then                             -- XOR
      RETVAL := SIGNED(STD_LOGIC_VECTOR(A) xor STD_LOGIC_VECTOR(B));
   elsif(F = "101") then                             -- COM
      RETVAL := SIGNED(not STD_LOGIC_VECTOR(A));
+     C <= '1';
   elsif(F = "110") then                             -- NEG
      RETVAL := 0 - A;
      if(STD_LOGIC_VECTOR(RETVAL) = "10000000") then
@@ -82,6 +97,7 @@ begin
      end if;
   else                                              -- CLR
      RETVAL := "00000000";
+     C <= '0';
   end if;
         
   if(STD_LOGIC_VECTOR(RETVAL) = "00000000") then    -- ZERO flag
