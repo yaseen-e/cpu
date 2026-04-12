@@ -1,40 +1,20 @@
-# Vivado generated project state
-.Xil/
-*.cache/
-*.hw/
-*.ip_user_files/
-*.runs/
-*.sim/
-*.gen/
+# Ignore everything by default.
+*
 
-# Common Vivado logs and journals
-*.jou
-*.log
-*.str
-*.backup.jou
-*.backup.log
-*.pb
-*.rpx
-*.rpt
-*.vds
-*.vdi
-*.wdf
-*.lpr
+# Keep Git meta and this rules file visible.
+!.gitignore
 
-# Build/program outputs
-*.bit
-*.bin
-*.mcs
-*.ltx
-*.dcp
+# Keep manually maintained project content.
+!cpu.srcs/
+cpu.srcs/*
+!cpu.srcs/sources_1/
+!cpu.srcs/sources_1/**
+!cpu.srcs/sim_1/
+!cpu.srcs/sim_1/**
+!cpu.srcs/constrs_1/
+!cpu.srcs/constrs_1/**
 
-# Tool/editor temp files
-*~
-*.tmp
-*.swp
-*.swo
-
-# OS/editor noise
-.DS_Store
-Thumbs.db
-.vscode/
+# Keep docs (if/when present).
+!docs/
+!docs/**
+!*.md
