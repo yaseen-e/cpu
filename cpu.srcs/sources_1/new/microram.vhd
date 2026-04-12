@@ -48,7 +48,7 @@ architecture a of microram is
 COMPONENT cpuram
   PORT (
     clka : IN STD_LOGIC;
-    wea : IN STD_LOGIC;
+    wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     addra : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
     dina : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
     douta : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
@@ -57,6 +57,6 @@ END COMPONENT;
 -- --------------------------------------------------------------
 begin
 -- ------------ Instantiate the RAM component ------------------
-U1 : cpuram PORT MAP (clka => CLOCK, dina => DATAIN, addra => ADDRESS, wea => we, douta => DATAOUT);
+U1 : cpuram PORT MAP (clka => CLOCK, dina => DATAIN, addra => ADDRESS, wea(0) => WE, douta => DATAOUT);
 
 end architecture a;
