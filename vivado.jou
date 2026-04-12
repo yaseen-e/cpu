@@ -3,10 +3,10 @@
 # SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Thu Apr  9 16:21:43 2026
-# Process ID: 20804
+# Start of session at: Sun Apr 12 15:10:47 2026
+# Process ID: 24988
 # Current directory: C:/Users/yelar/Desktop/cpu
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent8144 C:\Users\yelar\Desktop\cpu\cpu.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent24800 C:\Users\yelar\Desktop\cpu\cpu.xpr
 # Log file: C:/Users/yelar/Desktop/cpu/vivado.log
 # Journal file: C:/Users/yelar/Desktop/cpu\vivado.jou
 # Running On: YaseenLaptop, OS: Windows, CPU Frequency: 2995 MHz, CPU Physical cores: 4, Host memory: 17005 MB
@@ -14,10 +14,6 @@
 start_gui
 open_project C:/Users/yelar/Desktop/cpu/cpu.xpr
 update_compile_order -fileset sources_1
-reset_run synth_1
-reset_run cpuram_synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
 open_hw_manager
 connect_hw_server -allow_non_jtag
 open_hw_target
