@@ -1,0 +1,106 @@
+; Coefficient file for initializing a 512x8 RAM
+; to demonstrate CPU functionality.
+;
+
+memory_initialization_radix = 2;
+memory_initialization_vector =
+11110000
+11110001
+00100100
+00010100
+00000000
+00011110
+00000001
+00011111
+10000000
+00100000
+00010100
+00100100
+00010000
+11110000
+00001000
+11110000
+00001000
+11110000
+11110000
+11110000
+11110000
+00001000
+11110000
+11110000
+11110000
+11110000
+11110000
+11110000
+11110000
+11110000
+11101111
+00111001
+11110000
+00000000
+00010011
+00111000
+00001000
+00000001
+00010100
+00111001
+00001001
+10000000
+00111000
+00001000
+11110000
+11110000
+00111000
+00001000
+00110000
+00111000
+11110000
+00000111
+00000011
+;
+
+
+
+; TEST PROGRAM (pass condition writes 0x28 to OUT0)
+;  0) CLR A                  ; C=0
+;  1) CLR B                  ; keep startup deterministic
+;  2) BCS 20                 ; not taken because C=0
+;  3) target byte
+;  4) LOAD 30, A             ; A=239
+;  5) target byte
+;  6) LOAD 31, B             ; B=57
+;  7) target byte
+;  8) ADD A                  ; A=40, C=1
+;  9) BCC 20                 ; not taken because C=1
+; 10) target byte
+; 11) BCS 16                 ; taken because C=1
+; 12) target byte
+; 13) CLR A                  ; should be skipped on pass
+; 14) OUT A,P0               ; fail path writes 0x00
+; 16) OUT A,P0               ; pass path writes 0x28
+; 20) OUT A,P0               ; fail marker if branching wrong
+; 30) data: 239
+; 31) data: 57
+
+; LEGACY PROGRAM (starts at 32)
+; 32) CLR A
+; 33) LOAD 51, A
+; 34) 0x33
+; 35) BCD0 A
+; 36) OUT A
+; 37) LOAD 52, B
+; 38) 0x34
+; 39) BCD0 B
+; 40) OUT B
+; 41) ADD A
+; 42) BCD0 A
+; 43) OUT A
+; 44) CLR A
+; 45) CLR A
+; 46) BCD0 A
+; 47) OUT A
+; 48) DEB 0,A
+; 49) BCD0 A
+; 50) CLR A
+; 51) 0x07
+; 52) 0x03

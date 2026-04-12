@@ -73,6 +73,7 @@ signal BCD0B_Strobe : std_logic;
 
 -- Clock period definitions
 constant clk_period : time := 10ns;
+constant sim_timeout : time := 4000ns;
  
 begin
 -- Instantiate the Unit Under Test (UUT)
@@ -95,6 +96,24 @@ stim_proc : process begin
             reset <= '0';
             wait;
             end process;
+
+-- Verify carry/branch behavior using the directed RAM program.
+check_proc : process
+begin
+        wait until reset = '0';
+        wait for sim_timeout;
+
+        assert (Outport0 = X"28")
+            report "FAIL: Expected Outport0 = 0x28 (40) from pass path, got " & integer'image(to_integer(unsigned(Outport0)))
+            severity failure;
+
+        assert (RegA = X"28")
+            report "FAIL: Expected RegA = 0x28 after 239 + 57 with wraparound"
+            severity failure;
+
+        report "PASS: Carry + BCC/BCS program reached expected pass state." severity note;
+        wait;
+end process;
 
 end;
 

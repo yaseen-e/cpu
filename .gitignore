@@ -3,6 +3,7 @@
 
 # Keep Git meta and this rules file visible.
 !.gitignore
+!testfile.coe
 
 # Keep manually maintained project content.
 !cpu.srcs/
