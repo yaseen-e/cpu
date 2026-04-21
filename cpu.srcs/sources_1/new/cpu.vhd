@@ -36,13 +36,14 @@ USE ieee.std_logic_1164.all;
 USE ieee.std_logic_arith.all;
 
 entity cpu is
-PORT(clk : in STD_LOGIC;
-	 DebClk : in STD_LOGIC;
+PORT(
+	 mclk : in STD_LOGIC;
 	 reset : in STD_LOGIC;
 	 Inport0, Inport1 : in STD_LOGIC_VECTOR(7 downto 0);
 	 Outport0, Outport1	: out STD_LOGIC_VECTOR(7 downto 0);
-	 RegA, RegB : out STD_LOGIC_VECTOR(7 downto 0);
-	 BCD0A_Strobe, BCD0B_Strobe : out STD_LOGIC);
+	 DISP2_SEG : out STD_LOGIC_VECTOR(7 downto 0);
+	 DISP2_AN : out STD_LOGIC_VECTOR(3 downto 0)
+);
 end cpu;
 
 architecture a of cpu is
@@ -69,6 +70,8 @@ port (  CLOCK   : in STD_LOGIC ;
 	 );
 end component;
 
+-- When running behavioral instruction tests, comment microram above,
+-- then uncomment this microram_sim declaration.
 --component microram_sim is
 --port (  CLOCK   : in STD_LOGIC ;
 --		ADDRESS	: in STD_LOGIC_VECTOR (8 downto 0);
@@ -77,6 +80,42 @@ end component;
 --		WE	: in STD_LOGIC 
 --	 );
 --end component;
+component clk_div_1khz is
+	Port (
+		clk_in : in STD_LOGIC;
+		reset : in STD_LOGIC;
+		clk_out : out STD_LOGIC
+	);
+end component;
+
+component bcd0_mux is
+	Port (
+		clk : in STD_LOGIC;
+		reset : in STD_LOGIC;
+		bcd_lo_in : in STD_LOGIC_VECTOR(7 downto 0);
+		bcd_hi_in : in STD_LOGIC_VECTOR(7 downto 0);
+		strobe_a : in STD_LOGIC;
+		strobe_b : in STD_LOGIC;
+		a_lo : out STD_LOGIC_VECTOR(7 downto 0);
+		a_hi : out STD_LOGIC_VECTOR(7 downto 0);
+		b_lo : out STD_LOGIC_VECTOR(7 downto 0);
+		b_hi : out STD_LOGIC_VECTOR(7 downto 0)
+	);
+end component;
+
+component disp2_driver is
+	Port (
+		clk : in STD_LOGIC;
+		reset : in STD_LOGIC;
+		digit3 : in STD_LOGIC_VECTOR(7 downto 0);
+		digit2 : in STD_LOGIC_VECTOR(7 downto 0);
+		digit1 : in STD_LOGIC_VECTOR(7 downto 0);
+		digit0 : in STD_LOGIC_VECTOR(7 downto 0);
+		disp2_seg : out STD_LOGIC_VECTOR(7 downto 0);
+		disp2_an : out STD_LOGIC_VECTOR(3 downto 0)
+	);
+end component;
+
 -- ---------- Declare signals interfacing to RAM ---------------
 signal RAM_DATA_OUT : STD_LOGIC_VECTOR(7 downto 0);  -- DATAOUT output of RAM
 signal ADDR : STD_LOGIC_VECTOR(8 downto 0);	         -- ADDRESS input of RAM
@@ -94,6 +133,10 @@ signal A,B : SIGNED(7 downto 0);
 signal N,Z,V,C : STD_LOGIC;
 -- ---------- Declare the common data bus ------------------
 signal DATA : STD_LOGIC_VECTOR(7 downto 0);
+signal BCD0A_Strobe, BCD0B_Strobe : STD_LOGIC;
+signal a_lo_s, a_hi_s : STD_LOGIC_VECTOR(7 downto 0);
+signal b_lo_s, b_hi_s : STD_LOGIC_VECTOR(7 downto 0);
+signal disp_clk_1khz : STD_LOGIC;
 
 -- -----------------------------------------------------
 -- This function returns TRUE if the given op code is a
@@ -145,8 +188,8 @@ signal Exc_CWrite : STD_LOGIC;          -- Latch carry bit C in CCR
 signal Exc_IOWrite : STD_LOGIC;         -- Latch data bus in I/O
 signal Exc_IOBCD : STD_LOGIC;           -- Latch BCD-decoded DATA nibbles to Outport0/1
 
--- DEB counters (BTN1 clock domain). With BTN1 as clk, this is 3 clock edges.
-constant DEBOUNCE_MAX : integer := 40;
+-- 40ms debounce at 100MHz.
+constant DEBOUNCE_MAX : integer := 4000000;
 signal Debounce0 : integer range 0 to DEBOUNCE_MAX;
 signal Debounce1 : integer range 0 to DEBOUNCE_MAX;
 	
@@ -154,16 +197,47 @@ begin
 -- ------------ Instantiate the ALU component ---------------
 U1 : alu PORT MAP (ALU_A, ALU_B, ALU_FUNC, ALU_OUT, ALU_N, ALU_V, ALU_Z, ALU_C);
 
-RegA <= STD_LOGIC_VECTOR(A);
-RegB <= STD_LOGIC_VECTOR(B);
+U_CLKDIV : clk_div_1khz
+	PORT MAP (
+		clk_in => mclk,
+		reset => reset,
+		clk_out => disp_clk_1khz
+	);
+
+U_BCD0_MUX : bcd0_mux
+	PORT MAP (
+		clk => mclk,
+		reset => reset,
+		bcd_lo_in => STD_LOGIC_VECTOR(A),
+		bcd_hi_in => STD_LOGIC_VECTOR(B),
+		strobe_a => BCD0A_Strobe,
+		strobe_b => BCD0B_Strobe,
+		a_lo => a_lo_s,
+		a_hi => a_hi_s,
+		b_lo => b_lo_s,
+		b_hi => b_hi_s
+	);
+
+U_DISP2 : disp2_driver
+	PORT MAP (
+		clk => disp_clk_1khz,
+		reset => reset,
+		digit3 => b_hi_s,
+		digit2 => b_lo_s,
+		digit1 => a_hi_s,
+		digit0 => a_lo_s,
+		disp2_seg => DISP2_SEG,
+		disp2_an => DISP2_AN
+	);
 			
 -- ------------ Drive the ALU_FUNC input ----------------
 ALU_FUNC <= IR(6 downto 4);
 	
 -- ------------ Instantiate the RAM component -------------
-U2 : microram PORT MAP (CLOCK => clk, ADDRESS => ADDR, DATAOUT => RAM_DATA_OUT, DATAIN => DATA, WE => RAM_WE);
+U2 : microram PORT MAP (CLOCK => mclk, ADDRESS => ADDR, DATAOUT => RAM_DATA_OUT, DATAIN => DATA, WE => RAM_WE);
 
---U2 : microram_sim PORT MAP (CLOCK => clk, ADDRESS => ADDR, DATAOUT => RAM_DATA_OUT, DATAIN => DATA, WE => RAM_WE);
+-- For behavioral instruction testing, comment U2 above and uncomment below.
+--U2 : microram_sim PORT MAP (CLOCK => mclk, ADDRESS => ADDR, DATAOUT => RAM_DATA_OUT, DATAIN => DATA, WE => RAM_WE);
 
 -- ---------------- Generate RAM write enable ---------------------
 -- The address and data are presented to the RAM during the Memory phase, 
@@ -188,7 +262,7 @@ with CurrState select
 -- --------------------------------------------------------------------
 -- This is the next-state logic for the 4-phase state machine.
 -- --------------------------------------------------------------------
-process (clk,reset)
+process (mclk,reset)
 variable temp : integer;
 begin
   if(reset = '1') then
@@ -207,7 +281,7 @@ begin
 	 BCD0A_Strobe <= '0';
 	 BCD0B_Strobe <= '0';
 	 temp := 0;
-  elsif(rising_edge(clk)) then
+	elsif(rising_edge(mclk)) then
 	 BCD0A_Strobe <= '0';
 	 BCD0B_Strobe <= '0';
 	 case CurrState is
@@ -396,11 +470,11 @@ case CurrState is
 end process;
 
 -- ------------ Debounce timer 0 ----------------
-process(DebClk, reset)
+process(mclk, reset)
 begin
 	if(reset = '1') then
 		Debounce0 <= DEBOUNCE_MAX;
-	elsif(rising_edge(DebClk)) then
+	elsif(rising_edge(mclk)) then
 		if(Inport0(0) = '1') then
 			Debounce0 <= DEBOUNCE_MAX;
 		elsif(Debounce0 > 0) then
@@ -412,11 +486,11 @@ begin
 end process;
 
 -- ------------ Debounce timer 1 ----------------
-process(DebClk, reset)
+process(mclk, reset)
 begin
 	if(reset = '1') then
 		Debounce1 <= DEBOUNCE_MAX;
-	elsif(rising_edge(DebClk)) then
+	elsif(rising_edge(mclk)) then
 		if(Inport0(1) = '1') then
 			Debounce1 <= DEBOUNCE_MAX;
 		elsif(Debounce1 > 0) then

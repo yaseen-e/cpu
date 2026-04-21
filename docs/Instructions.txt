@@ -1,0 +1,18 @@
+1) The "program" in testfile.coe is transcribed to microram_sim.vhd
+   for the behavioral simulation. 
+
+2) When using "microram_sim.vhd" file, comment the component declaration and instantation of 
+   "microram" in "cpu.vhd" file and uncomment the instantiation of  "microram_sim" in "cpu.vhd" file. 
+   
+3) Do the opposite when implementing the design.   
+
+4) When running the program on the board do the following
+a) Press BTN1 (about 10 times) to execute the first OUT instruction (which displays 1 on LED)
+b) Press BTN1 (about 3 times) to execute the next OUT instruction (which displays 2 on LED)
+c) Press BTN1 (about 10 times) to execute the last OUT instruction (which displays 7 on LED)
+
+Each button press mimics a clock cycle.
+
+
+
+

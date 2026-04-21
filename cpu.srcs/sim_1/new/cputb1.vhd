@@ -43,17 +43,14 @@ architecture behavior of cputb1 is
 -- Component Declaration for the Unit Under Test (UUT)
 component cpu
     PORT(
-         clk : IN  std_logic;
-         DebClk : IN std_logic;
+         mclk : IN  std_logic;
          reset : IN  std_logic;
          Inport0 : IN  std_logic_vector(7 downto 0);
          Inport1 : IN  std_logic_vector(7 downto 0);
          Outport0 : OUT  std_logic_vector(7 downto 0);
          Outport1 : OUT  std_logic_vector(7 downto 0);
-         RegA : OUT std_logic_vector(7 downto 0);
-         RegB : OUT std_logic_vector(7 downto 0);
-         BCD0A_Strobe : OUT std_logic;
-         BCD0B_Strobe : OUT std_logic
+         DISP2_SEG : OUT std_logic_vector(7 downto 0);
+         DISP2_AN : OUT std_logic_vector(3 downto 0)
         );
 end component;
 
@@ -66,10 +63,8 @@ signal Inport1 : std_logic_vector(7 downto 0) := (others => '0');
 --Outputs
 signal Outport0 : std_logic_vector(7 downto 0);
 signal Outport1 : std_logic_vector(7 downto 0);
-signal RegA : std_logic_vector(7 downto 0);
-signal RegB : std_logic_vector(7 downto 0);
-signal BCD0A_Strobe : std_logic;
-signal BCD0B_Strobe : std_logic;
+signal DISP2_SEG : std_logic_vector(7 downto 0);
+signal DISP2_AN : std_logic_vector(3 downto 0);
 
 -- Clock period definitions
 constant clk_period : time := 10ns;
@@ -77,12 +72,10 @@ constant sim_timeout : time := 4000ns;
  
 begin
 -- Instantiate the Unit Under Test (UUT)
-C1 : cpu PORT MAP (clk => clk, reset => reset, Inport0 => Inport0, Inport1 => Inport1,
-                   DebClk => clk,
+C1 : cpu PORT MAP (mclk => clk, reset => reset, Inport0 => Inport0, Inport1 => Inport1,
                    Outport0 => Outport0, Outport1 => Outport1,
-                   RegA => RegA, RegB => RegB,
-                   BCD0A_Strobe => BCD0A_Strobe,
-                   BCD0B_Strobe => BCD0B_Strobe);
+                   DISP2_SEG => DISP2_SEG,
+                   DISP2_AN => DISP2_AN);
 
 -- Clock process 
 clk_process : process begin
@@ -97,7 +90,7 @@ stim_proc : process begin
             wait;
             end process;
 
--- Verify carry/branch behavior using the directed RAM program.
+-- Carry/branch check for the current cputb1 program.
 check_proc : process
 begin
         wait until reset = '0';
@@ -105,10 +98,6 @@ begin
 
         assert (Outport0 = X"28")
             report "FAIL: Expected Outport0 = 0x28 (40) from pass path, got " & integer'image(to_integer(unsigned(Outport0)))
-            severity failure;
-
-        assert (RegA = X"28")
-            report "FAIL: Expected RegA = 0x28 after 239 + 57 with wraparound"
             severity failure;
 
         report "PASS: Carry + BCC/BCS program reached expected pass state." severity note;

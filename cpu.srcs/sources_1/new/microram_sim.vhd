@@ -52,20 +52,48 @@ architecture a of microram_sim is
 type t_mem_data is array(0 to 511) of std_logic_vector(7 downto 0);
 
 -- Your program is entered here, as initialization values for the "mem_data" signal.
-signal mem_data : t_mem_data := (0 => "11110000", -- CLR A (dummy first instruction)
-                                 1 => "00000000", -- LOAD 10,A  
-                                 2 => X"0A",      -- ADDRESS -> 10
-	                             3 => "00001000", -- OUT A       
-	                             4 => "10100000", -- LSL A       
-	                             5 => "00001000", -- OUT A 
-	                             6 => "00000001", -- LOAD 11,B  
-	                             7 => X"0B",      -- ADDRESS -> 11
-	                           	 8 => "10000000", -- ADD A 
-	                           	 9 => "00001000", -- OUT A       
-	                    	 -- test data --
-                                10 => "00000001", -- memory location 10 set to 1
-                                11 => "00000101", -- memory location 11 set to 5
-                            others => "11110000"); -- all other memory locations set to CLR A instr
+signal mem_data : t_mem_data := (
+   -- ACTIVE PROGRAM (uncomment one instruction set at a time)
+   -- Carry/BCC/BCS example
+   0  => "11110000", -- CLR A
+   1  => "00000000", -- LOAD 10,A
+   2  => X"0A",
+   3  => "00001000", -- OUT A
+   4  => "10100000", -- LSL A
+   5  => "00001000", -- OUT A
+   6  => "00000001", -- LOAD 11,B
+   7  => X"0B",
+   8  => "10000000", -- ADD A
+   9  => "00001000", -- OUT A
+   10 => "00000001", -- data at 10
+   11 => "00000101", -- data at 11
+
+   -- BCD0 INSTRUCTIONS
+   --0 => opcode1,
+   --1 => opcode2,
+   --2 => opcode3,
+   --3 => opcode4,
+
+   -- DEB INSTRUCTIONS
+   --0 => opcode1,
+   --1 => opcode2,
+   --2 => opcode3,
+   --3 => opcode4,
+
+   -- BCC INSTRUCTIONS
+   --0 => opcode1,
+   --1 => opcode2,
+   --2 => opcode3,
+   --3 => opcode4,
+
+   -- BCS INSTRUCTIONS
+   --0 => opcode1,
+   --1 => opcode2,
+   --2 => opcode3,
+   --3 => opcode4,
+
+   others => "11110000"
+);
 
 begin
 RAM_Process : process(CLOCK)
