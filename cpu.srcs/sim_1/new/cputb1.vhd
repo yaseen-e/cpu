@@ -49,6 +49,7 @@ component cpu
          Inport1 : IN  std_logic_vector(7 downto 0);
          Outport0 : OUT  std_logic_vector(7 downto 0);
          Outport1 : OUT  std_logic_vector(7 downto 0);
+         RGB_RED : OUT std_logic;
          DISP2_SEG : OUT std_logic_vector(7 downto 0);
          DISP2_AN : OUT std_logic_vector(3 downto 0)
         );
@@ -63,6 +64,7 @@ signal Inport1 : std_logic_vector(7 downto 0) := (others => '0');
 --Outputs
 signal Outport0 : std_logic_vector(7 downto 0);
 signal Outport1 : std_logic_vector(7 downto 0);
+signal RGB_RED : std_logic;
 signal DISP2_SEG : std_logic_vector(7 downto 0);
 signal DISP2_AN : std_logic_vector(3 downto 0);
 
@@ -74,6 +76,7 @@ begin
 -- Instantiate the Unit Under Test (UUT)
 C1 : cpu PORT MAP (mclk => clk, reset => reset, Inport0 => Inport0, Inport1 => Inport1,
                    Outport0 => Outport0, Outport1 => Outport1,
+                   RGB_RED => RGB_RED,
                    DISP2_SEG => DISP2_SEG,
                    DISP2_AN => DISP2_AN);
 

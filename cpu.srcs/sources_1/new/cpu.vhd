@@ -41,6 +41,7 @@ PORT(
 	 reset : in STD_LOGIC;
 	 Inport0, Inport1 : in STD_LOGIC_VECTOR(7 downto 0);
 	 Outport0, Outport1	: out STD_LOGIC_VECTOR(7 downto 0);
+	 RGB_RED : out STD_LOGIC;
 	 DISP2_SEG : out STD_LOGIC_VECTOR(7 downto 0);
 	 DISP2_AN : out STD_LOGIC_VECTOR(3 downto 0)
 );
@@ -61,18 +62,7 @@ signal ALU_OUT : SIGNED(7 downto 0);
 signal ALU_N, ALU_V, ALU_Z, ALU_C : STD_LOGIC;
 
 -- ------------ Declare the 512x8 RAM component --------------
-component microram is
-port (  CLOCK   : in STD_LOGIC ;
-		ADDRESS	: in STD_LOGIC_VECTOR (8 downto 0);
-		DATAOUT : out STD_LOGIC_VECTOR (7 downto 0);
-		DATAIN  : in STD_LOGIC_VECTOR (7 downto 0);
-		WE	: in STD_LOGIC 
-	 );
-end component;
-
--- When running behavioral instruction tests, comment microram above,
--- then uncomment this microram_sim declaration.
---component microram_sim is
+--component microram is
 --port (  CLOCK   : in STD_LOGIC ;
 --		ADDRESS	: in STD_LOGIC_VECTOR (8 downto 0);
 --		DATAOUT : out STD_LOGIC_VECTOR (7 downto 0);
@@ -80,6 +70,17 @@ end component;
 --		WE	: in STD_LOGIC 
 --	 );
 --end component;
+
+-- When running behavioral instruction tests, comment microram above,
+-- then uncomment this microram_sim declaration.
+component microram_sim is
+port (  CLOCK   : in STD_LOGIC ;
+		ADDRESS	: in STD_LOGIC_VECTOR (8 downto 0);
+		DATAOUT : out STD_LOGIC_VECTOR (7 downto 0);
+		DATAIN  : in STD_LOGIC_VECTOR (7 downto 0);
+		WE	: in STD_LOGIC 
+	 );
+end component;
 component clk_div_1khz is
 	Port (
 		clk_in : in STD_LOGIC;
@@ -137,6 +138,11 @@ signal BCD0A_Strobe, BCD0B_Strobe : STD_LOGIC;
 signal a_lo_s, a_hi_s : STD_LOGIC_VECTOR(7 downto 0);
 signal b_lo_s, b_hi_s : STD_LOGIC_VECTOR(7 downto 0);
 signal disp_clk_1khz : STD_LOGIC;
+signal cpu_clk_step : STD_LOGIC;
+
+-- 100MHz / (2 * 25,000,000) = 2Hz free-running CPU step clock.
+constant CPU_STEP_DIV_MAX : integer := 24999999; -- 12499999 for 4Hz, 2499999 for 2Hz
+signal cpu_step_div_cnt : integer range 0 to CPU_STEP_DIV_MAX;
 
 -- -----------------------------------------------------
 -- This function returns TRUE if the given op code is a
@@ -232,12 +238,31 @@ U_DISP2 : disp2_driver
 			
 -- ------------ Drive the ALU_FUNC input ----------------
 ALU_FUNC <= IR(6 downto 4);
+
+-- Drive RGB red directly from carry flag.
+RGB_RED <= C;
+
+-- Free-running CPU instruction step clock (target: 2Hz).
+process(mclk, reset)
+begin
+	if(reset = '1') then
+		cpu_step_div_cnt <= 0;
+		cpu_clk_step <= '0';
+	elsif(rising_edge(mclk)) then
+		if(cpu_step_div_cnt = CPU_STEP_DIV_MAX) then
+			cpu_step_div_cnt <= 0;
+			cpu_clk_step <= not cpu_clk_step;
+		else
+			cpu_step_div_cnt <= cpu_step_div_cnt + 1;
+		end if;
+	end if;
+end process;
 	
 -- ------------ Instantiate the RAM component -------------
-U2 : microram PORT MAP (CLOCK => mclk, ADDRESS => ADDR, DATAOUT => RAM_DATA_OUT, DATAIN => DATA, WE => RAM_WE);
+--U2 : microram PORT MAP (CLOCK => cpu_clk_step, ADDRESS => ADDR, DATAOUT => RAM_DATA_OUT, DATAIN => DATA, WE => RAM_WE);
 
 -- For behavioral instruction testing, comment U2 above and uncomment below.
---U2 : microram_sim PORT MAP (CLOCK => mclk, ADDRESS => ADDR, DATAOUT => RAM_DATA_OUT, DATAIN => DATA, WE => RAM_WE);
+U2 : microram_sim PORT MAP (CLOCK => cpu_clk_step, ADDRESS => ADDR, DATAOUT => RAM_DATA_OUT, DATAIN => DATA, WE => RAM_WE);
 
 -- ---------------- Generate RAM write enable ---------------------
 -- The address and data are presented to the RAM during the Memory phase, 
@@ -262,7 +287,7 @@ with CurrState select
 -- --------------------------------------------------------------------
 -- This is the next-state logic for the 4-phase state machine.
 -- --------------------------------------------------------------------
-process (mclk,reset)
+process (cpu_clk_step,reset)
 variable temp : integer;
 begin
   if(reset = '1') then
@@ -281,7 +306,7 @@ begin
 	 BCD0A_Strobe <= '0';
 	 BCD0B_Strobe <= '0';
 	 temp := 0;
-	elsif(rising_edge(mclk)) then
+	elsif(rising_edge(cpu_clk_step)) then
 	 BCD0A_Strobe <= '0';
 	 BCD0B_Strobe <= '0';
 	 case CurrState is

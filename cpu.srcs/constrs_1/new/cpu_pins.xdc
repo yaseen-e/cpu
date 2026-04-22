@@ -40,6 +40,10 @@ set_property IOSTANDARD LVCMOS33 [get_ports {Outport1[5]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {Outport1[6]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {Outport1[7]}]
 
+# On-board RGB LED0 red channel (RGB0_R)
+set_property PACKAGE_PIN V6 [get_ports RGB_RED]
+set_property IOSTANDARD LVCMOS33 [get_ports RGB_RED]
+
 # SWITCHES
 set_property PACKAGE_PIN K1 [get_ports {Inport1[7]}]
 set_property PACKAGE_PIN K2 [get_ports {Inport1[6]}]
